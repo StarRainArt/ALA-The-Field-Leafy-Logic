@@ -16,7 +16,6 @@ def retrieveData(uri):
 
 
 def send(devices):
-    print(devices)
     for x in devices['results']:
         serial_number = x['serial_number']
         name = x['name']
