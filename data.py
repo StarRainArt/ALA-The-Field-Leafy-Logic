@@ -28,6 +28,7 @@ def send(devices):
 
 while True:
     devices = retrieveData('/api/devices/?format=json')
-    send(devices)  # Call the function
-    time.sleep(300)  # Wait for 60 seconds
+
+    send(devices)
+    time.sleep(300)  # 300sec / 5min
 
