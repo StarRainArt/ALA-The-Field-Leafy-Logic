@@ -1,13 +1,18 @@
 import requests
-import db
 import time
+import sys
+import os
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.append(parent_dir)
+import db
 
 class Soil_temperature_events:
-    def __init__(self, base_url, token):
+    def __init__(self):
         self.session = requests.Session()
-        self.base_url = base_url
-        self.headers = {'Authorization': f'token {token}'}
-
+        self.base_url = "https://garden.inajar.nl"
+        self.token = "a83d911c8b57054979190015e2a3f5d823d16f56"
+        self.headers = {'Authorization': f'token {self.token}'}
+        
     def retrieve(self, uri):
         url = f"{self.base_url}{uri}"
         response = self.session.get(url, headers=self.headers)
@@ -22,6 +27,10 @@ class Soil_temperature_events:
             db.cur.execute("INSERT INTO soil_temperature_events (timestamp, device, value) VALUES (%s, %s, %s)", (timestamp, device, value))
             db.conn.commit()
 
+    def get(self, column_name):
+        db.cur.execute(f"SELECT {column_name} FROM soil_temperature_events")
+        return db.cur.fetchall()
+
     def run(self):
         while True:
             device = self.retrieve('/api/soil_temperature_events/?format=json')
@@ -29,9 +38,7 @@ class Soil_temperature_events:
             time.sleep(300)
 
 if __name__ == "__main__":
-    token = "a83d911c8b57054979190015e2a3f5d823d16f56"
-    base_url = "https://garden.inajar.nl"
-    manager = Soil_temperature_events(base_url, token)
+    manager = Soil_temperature_events()
     manager.run()
 
         

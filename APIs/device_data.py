@@ -1,12 +1,17 @@
 import requests
-import db
 import time
+import sys
+import os
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.append(parent_dir)
+import db
 
 class Device_data:
-    def __init__(self, base_url, token):
+    def __init__(self):
         self.session = requests.Session()
-        self.base_url = base_url
-        self.headers = {'Authorization': f'token {token}'}
+        self.base_url = "https://garden.inajar.nl"
+        self.token = "a83d911c8b57054979190015e2a3f5d823d16f56"
+        self.headers = {'Authorization': f'token {self.token}'}
 
     def retrieve(self, uri):
         url = f"{self.base_url}{uri}"
@@ -23,6 +28,10 @@ class Device_data:
 
             db.cur.execute("INSERT INTO device_data (serial_number, name, label, last_seen, last_battery_voltage) VALUES (%s, %s, %s, %s, %s)", (serial_number, name, label, last_seen, battery))
             db.conn.commit()
+        
+    def get(self, column_name):
+        db.cur.execute(f"SELECT {column_name} FROM device_data")
+        return db.cur.fetchall()
 
     def run(self):
         while True:
@@ -31,9 +40,7 @@ class Device_data:
             time.sleep(300)
 
 if __name__ == "__main__":
-    token = "a83d911c8b57054979190015e2a3f5d823d16f56"
-    base_url = "https://garden.inajar.nl"
-    manager = Device_data(base_url, token)
+    manager = Device_data()
     manager.run()
 
         

@@ -6,7 +6,7 @@ lol = 'lol'
 try:
     conn = mariadb.connect(
         user="root",
-        password="Wolfie01",
+        password="",
         host="localhost",
         database="sensor_data" 
     )

@@ -2,11 +2,12 @@ import requests
 import db
 import time
 
-class Battery_voltage_events:
-    def __init__(self, base_url, token):
+class Par_events:
+    def __init__(self):
         self.session = requests.Session()
-        self.base_url = base_url
-        self.headers = {'Authorization': f'token {token}'}
+        self.base_url = "https://garden.inajar.nl"
+        self.token = "a83d911c8b57054979190015e2a3f5d823d16f56"
+        self.headers = {'Authorization': f'token {self.token}'}
 
     def retrieve(self, uri):
         url = f"{self.base_url}{uri}"
@@ -19,19 +20,21 @@ class Battery_voltage_events:
             device = x['device']
             value = x['value']
 
-            db.cur.execute("INSERT INTO battery_voltage_events (timestamp, device, value) VALUES (%s, %s, %s)", (timestamp, device, value))
+            db.cur.execute("INSERT INTO par_events (timestamp, device, value) VALUES (%s, %s, %s)", (timestamp, device, value))
             db.conn.commit()
+
+    def get(self, column_name):
+        db.cur.execute(f"SELECT {column_name} FROM par_events")
+        return db.cur.fetchall()
 
     def run(self):
         while True:
-            device = self.retrieve('/api/battery_voltage_events/?format=json')
+            device = self.retrieve('/api/par_events/?format=json')
             self.send(device)
             time.sleep(300)
 
 if __name__ == "__main__":
-    token = "a83d911c8b57054979190015e2a3f5d823d16f56"
-    base_url = "https://garden.inajar.nl"
-    manager = Battery_voltage_events(base_url, token)
+    manager = Par_events()
     manager.run()
 
         
