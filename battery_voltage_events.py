@@ -2,7 +2,7 @@ import requests
 import db
 import time
 
-class Device_data:
+class Battery_voltage_events:
     def __init__(self, base_url, token):
         self.session = requests.Session()
         self.base_url = base_url
@@ -33,7 +33,7 @@ class Device_data:
 if __name__ == "__main__":
     token = "a83d911c8b57054979190015e2a3f5d823d16f56"
     base_url = "https://garden.inajar.nl"
-    manager = Device_data(base_url, token)
+    manager = Battery_voltage_events(base_url, token)
     manager.run()
 
         
