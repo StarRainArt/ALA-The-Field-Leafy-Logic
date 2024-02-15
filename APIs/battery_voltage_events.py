@@ -27,10 +27,6 @@ class Battery_voltage_events:
             db.cur.execute("INSERT INTO battery_voltage_events (timestamp, device, value) VALUES (%s, %s, %s)", (timestamp, device, value))
             db.conn.commit()
 
-    def get(self, column_name):
-        db.cur.execute(f"SELECT {column_name} FROM battery_voltage_events")
-        return db.cur.fetchall()
-
     def run(self):
         while True:
             device = self.retrieve('/api/battery_voltage_events/?format=json')

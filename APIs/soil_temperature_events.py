@@ -27,10 +27,6 @@ class Soil_temperature_events:
             db.cur.execute("INSERT INTO soil_temperature_events (timestamp, device, value) VALUES (%s, %s, %s)", (timestamp, device, value))
             db.conn.commit()
 
-    def get(self, column_name):
-        db.cur.execute(f"SELECT {column_name} FROM soil_temperature_events")
-        return db.cur.fetchall()
-
     def run(self):
         while True:
             device = self.retrieve('/api/soil_temperature_events/?format=json')

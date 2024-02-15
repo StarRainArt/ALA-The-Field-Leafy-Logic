@@ -1,4 +1,9 @@
 import requests
+import sys
+import os
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.append(parent_dir)
+import db
 import db
 import time
 
@@ -22,10 +27,6 @@ class Relative_humidity_events:
 
             db.cur.execute("INSERT INTO relative_humidity_events (timestamp, device, value) VALUES (%s, %s, %s)", (timestamp, device, value))
             db.conn.commit()
-
-    def get(self, column_name):
-        db.cur.execute(f"SELECT {column_name} FROM relative_humidity_events")
-        return db.cur.fetchall()
 
     def run(self):
         while True:

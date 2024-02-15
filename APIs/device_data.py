@@ -28,10 +28,6 @@ class Device_data:
 
             db.cur.execute("INSERT INTO device_data (serial_number, name, label, last_seen, last_battery_voltage) VALUES (%s, %s, %s, %s, %s)", (serial_number, name, label, last_seen, battery))
             db.conn.commit()
-        
-    def get(self, column_name):
-        db.cur.execute(f"SELECT {column_name} FROM device_data")
-        return db.cur.fetchall()
 
     def run(self):
         while True:
