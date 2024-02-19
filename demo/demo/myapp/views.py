@@ -1,5 +1,4 @@
 from django.shortcuts import render, HttpResponse
-import requests
 
 # Create your views here.
 def home(request):

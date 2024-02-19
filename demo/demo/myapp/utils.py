@@ -21,7 +21,7 @@ def device_Data_Opslaan(devices):
         last_battery_voltage = x['last_battery_voltage']
         
         try:
-            #insert into device_data op models.py
+            #insert into data op models.py
             Device_Data.objects.create(
                 serialNumber=serial_number,
                 name=name,
@@ -32,7 +32,35 @@ def device_Data_Opslaan(devices):
         except Exception as e:
             print(f"Error: {e}")
 
+def get_Soil_Electric_Data(uri):
+    myToken = 'a83d911c8b57054979190015e2a3f5d823d16f56'
+    myUrl =  f'https://garden.inajar.nl{uri}'
+    head = {'Authorization': 'token {}'.format(myToken)}
+    r = session.get(myUrl, headers=head)
+    return r.json()
+
+def Soil_Electric_Data(devices):
+    for x in devices['results']:
+        timestamp = x['timestamp']
+        gateway_receive_time = x['gateway_receive_time']
+        device = x['device']
+        value = x['value']
+        
+        try:
+            #insert into data op models.py
+            Device_Data.objects.create(
+                timestamp=timestamp,
+                gateway_receive_time=gateway_receive_time,
+                device=device,
+                value=value
+            )
+        except Exception as e:
+            print(f"Error: {e}")
+
 while True:
-    devices = get_Device_Data("/api/devices/?format=json")
-    device_Data_Opslaan(devices)
+    deviceData = get_Device_Data("/api/devices/?format=json")
+    soilElectricData = get_Soil_Electric_Data("/api/soil_electric_conductivity_events/?format=json")
+    
+    device_Data_Opslaan(deviceData)
+    Soil_Electric_Data(soilElectricData)
     time.sleep(300)

@@ -11,6 +11,7 @@ class Device_Data(models.Model):
     lastBatteryVoltage = models.IntegerField()
 
 class Soil_Electric_Conductivity_Events(models.Model):
+    timeStamp = models.IntegerField(null=True)
     gateWayReceiveTime = models.DateTimeField(default=datetime.now, blank=True)
     device = models.IntegerField()
     value = models.DecimalField(max_digits = 5, decimal_places = 2)
