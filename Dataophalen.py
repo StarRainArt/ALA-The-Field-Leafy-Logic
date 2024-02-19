@@ -33,12 +33,7 @@ def dataVersturen(devices):
             conn.commit()
         except mariadb.Error as e: 
             print(f"Error: {e}")
-
-    cur.execute("SELECT serial_number, name FROM device_data")
-
-    for serial_number, name in cur: 
-        print(f" Name: {name}, Serial Number: {serial_number}")
-
+            
 while True:
     devices = dataOphalen("/api/devices/?format=json")
 
