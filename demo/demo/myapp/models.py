@@ -39,3 +39,9 @@ class Relative_Humidity_Events(models.Model):
     gateWayReceiveTime = models.DateTimeField(default=datetime.now, blank=True)
     device = models.IntegerField()
     value = models.DecimalField(max_digits = 5, decimal_places = 2)
+
+class soil_temperature_events(models.Model):
+    timeStamp = models.IntegerField()
+    gateWayReceiveTime = models.DateTimeField(default=datetime.now, blank=True)
+    device = models.IntegerField()
+    value = models.DecimalField(max_digits = 5, decimal_places = 2)
