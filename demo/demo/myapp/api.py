@@ -1,7 +1,16 @@
 import requests
 import time
 from django.utils import timezone
+
 from .models import Device_Data
+from .models import Soil_Electric_Conductivity_Events
+from .models import Soil_Relative_Permittivity_Events
+from .models import Battery_Voltage_Events
+from .models import Par_Events
+from .models import Relative_Humidity_Events
+from .models import soil_temperature_events
+
+
 
 session = requests.Session()
 
@@ -48,7 +57,7 @@ def Soil_Electric_Data(data):
         
         try:
             #insert into data op models.py
-            Device_Data.objects.create(
+            Soil_Electric_Conductivity_Events.objects.create(
                 timestamp=timestamp,
                 gateway_receive_time=gateway_receive_time,
                 device=device,
@@ -73,7 +82,7 @@ def Soil_Relative_Data(data):
         
         try:
             #insert into data op models.py
-            Device_Data.objects.create(
+            Soil_Relative_Permittivity_Events.objects.create(
                 timestamp=timestamp,
                 gateway_receive_time=gateway_receive_time,
                 device=device,
@@ -98,7 +107,7 @@ def Battery_Data(data):
         
         try:
             #insert into data op models.py
-            Device_Data.objects.create(
+            Battery_Voltage_Events.objects.create(
                 timestamp=timestamp,
                 gateway_receive_time=gateway_receive_time,
                 device=device,
@@ -123,7 +132,7 @@ def Par_Events_Data(data):
         
         try:
             #insert into data op models.py
-            Device_Data.objects.create(
+            Par_Events.objects.create(
                 timestamp=timestamp,
                 gateway_receive_time=gateway_receive_time,
                 device=device,
@@ -148,7 +157,7 @@ def Relative_Humidity_Data(data):
         
         try:
             #insert into data op models.py
-            Device_Data.objects.create(
+            Relative_Humidity_Events.objects.create(
                 timestamp=timestamp,
                 gateway_receive_time=gateway_receive_time,
                 device=device,
@@ -173,7 +182,7 @@ def Soil_Temperature_Data(data):
         
         try:
             #insert into data op models.py
-            Device_Data.objects.create(
+            soil_temperature_events.objects.create(
                 timestamp=timestamp,
                 gateway_receive_time=gateway_receive_time,
                 device=device,
