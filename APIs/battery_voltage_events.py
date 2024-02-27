@@ -6,7 +6,7 @@ parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.append(parent_dir)
 import db
 
-class Device_data:
+class Battery_voltage_events:
     def __init__(self):
         self.session = requests.Session()
         self.base_url = "https://garden.inajar.nl"
@@ -20,23 +20,21 @@ class Device_data:
     
     def send(self, device):
         for x in device['results']:
-            serial_number = x['serial_number']
-            name = x['name']
-            label = x['label']
-            last_seen = x['last_seen']
-            battery = x['last_battery_voltage']
+            timestamp = x['timestamp']
+            device = x['device']
+            value = x['value']
 
-            db.cur.execute("INSERT INTO device_data (serial_number, name, label, last_seen, last_battery_voltage) VALUES (%s, %s, %s, %s, %s)", (serial_number, name, label, last_seen, battery))
+            db.cur.execute("INSERT INTO battery_voltage_events (timestamp, device, value) VALUES (%s, %s, %s)", (timestamp, device, value))
             db.conn.commit()
 
     def run(self):
         while True:
-            device = self.retrieve('/api/devices/?format=json')
+            device = self.retrieve('/api/battery_voltage_events/?format=json')
             self.send(device)
             time.sleep(300)
 
 if __name__ == "__main__":
-    manager = Device_data()
+    manager = Battery_voltage_events()
     manager.run()
 
         

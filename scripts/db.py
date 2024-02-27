@@ -9,7 +9,6 @@ try:
         password="Wolfie01",
         host="localhost",
         database="sensor_data" 
-
     )
     
 except mariadb.Error as e:
