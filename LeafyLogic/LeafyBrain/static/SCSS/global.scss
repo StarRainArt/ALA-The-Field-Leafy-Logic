@@ -11,6 +11,11 @@ body, html {
     box-sizing: inherit;
 }
 
+//font imports
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');  //"Roboto Slab", serif;
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap'); //"Noto Sans", sans-serif;
+
+
 //variables
 $main-bg: #ECE3D3;
 $panel-bg: #BFA886;
@@ -23,24 +28,54 @@ $link-bg: #B8BCA2;
 $link-bg-hover: #C5CAAD;
 $link-bg-pressed: #A7AA95;
 
+$title-font: "Roboto Slab", serif;
+$para-font: "Noto Sans", sans-serif;
+
+
+//body styling
 body {
     display: grid;
     grid-template-columns: 1fr 4fr;
+    background-color: $main-bg;
 }
 
+//header styling
 header {
     display: flex;
     flex-direction: column;
     background-color: $header-bg;
     align-items: center;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
 
     img {
         width: 15vw;
         margin: 40px 0;
     }
+
     nav {
         display: flex;
         flex-direction: column;
         align-items: center;
+        width: 100%;
+
+        a {
+            background-color: $link-bg;
+            width: 80%;
+            margin: 20px 0;
+            padding: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0px 5px 10px -5px black;
+            text-align: center;
+            text-decoration: none;
+            color: black;
+            font-family: $para-font;
+            font-size: 24px;
+            font-weight: bold;
+
+            &:hover {
+                background-color: $link-bg-hover;
+            }
+        }
     }
 }
