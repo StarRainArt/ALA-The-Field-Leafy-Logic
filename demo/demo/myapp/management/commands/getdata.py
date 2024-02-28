@@ -5,6 +5,7 @@ from myapp.models import Device_Data, Soil_Electric_Conductivity_Events, Soil_Re
 import requests
 import pytz
 
+
 class Command(BaseCommand):
     help = 'Fetch data and save it to the database'
 

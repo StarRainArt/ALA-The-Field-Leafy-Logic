@@ -9,7 +9,7 @@ import db
 class Battery_voltage_events:
     def __init__(self):
         self.session = requests.Session()
-        self.base_url = "https://garden.inajar.nl"
+        self.base_url = "https://garden.inajar.nl/api/"
         self.token = "a83d911c8b57054979190015e2a3f5d823d16f56"
         self.headers = {'Authorization': f'token {self.token}'}
 
@@ -29,7 +29,7 @@ class Battery_voltage_events:
 
     def run(self):
         while True:
-            device = self.retrieve('/api/battery_voltage_events/?format=json')
+            device = self.retrieve('battery_voltage_events/?format=json')
             self.send(device)
             time.sleep(300)
 
