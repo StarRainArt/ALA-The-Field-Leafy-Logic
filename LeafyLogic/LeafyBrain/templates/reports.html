@@ -7,6 +7,13 @@
         <h3>Search-bar</h3>
     </section>
     <section class="report_section">
+        {%comment%}
+        {% for report in reports %}
+        <div class="report">
+            <p>{{}}</p>
+        </div>
+        {%endfor%}
+        {%endcomment%}
     </section>
 </section>
 {% endblock %}
