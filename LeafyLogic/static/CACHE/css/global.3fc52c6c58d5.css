@@ -1,0 +1,69 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+/* line 2, LeafyBrain/static/SCSS/global.scss */
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box; }
+
+/* line 10, LeafyBrain/static/SCSS/global.scss */
+* {
+  box-sizing: inherit; }
+
+/* line 36, LeafyBrain/static/SCSS/global.scss */
+body {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  background-color: #ECE3D3; }
+
+/* line 43, LeafyBrain/static/SCSS/global.scss */
+header {
+  display: flex;
+  flex-direction: column;
+  background-color: #9F9E89;
+  align-items: center;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px; }
+  /* line 51, LeafyBrain/static/SCSS/global.scss */
+  header img {
+    width: 15vw;
+    margin: 40px 0; }
+  /* line 56, LeafyBrain/static/SCSS/global.scss */
+  header nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%; }
+    /* line 62, LeafyBrain/static/SCSS/global.scss */
+    header nav a {
+      background-color: #B8BCA2;
+      width: 80%;
+      margin: 20px 0;
+      padding: 15px 0;
+      border-radius: 10px;
+      box-shadow: 0px 5px 10px -5px black;
+      text-align: center;
+      text-decoration: none;
+      color: black;
+      font-family: "Noto Sans", sans-serif;
+      font-size: 24px;
+      font-weight: bold; }
+      /* line 76, LeafyBrain/static/SCSS/global.scss */
+      header nav a:hover {
+        background-color: #C5CAAD; }
+
+/* line 83, LeafyBrain/static/SCSS/global.scss */
+main {
+  display: flex;
+  justify-content: center;
+  flex-direction: column; }
+  /* line 88, LeafyBrain/static/SCSS/global.scss */
+  main .section1 {
+    width: 90%; }
+  /* line 94, LeafyBrain/static/SCSS/global.scss */
+  main .section2 {
+    background-color: #BFA886;
+    height: 400px;
+    width: 80%; }
