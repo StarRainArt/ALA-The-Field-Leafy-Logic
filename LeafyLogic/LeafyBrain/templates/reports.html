@@ -11,8 +11,19 @@
         {% for report in reports %}
         <div class="report">
             <p>{{}}</p>
+            <button onclick="toggleDisplay()">icon</button>
+            <div class="report_dropdown">
+                edheduihedie
+            </div>
         </div>
         {%endfor%}
+        <script>
+            function toggleDisplay() {
+                var currentStyle = document.getElementById('report_dropdown').style.display;
+                var newStyle = currentStyle === 'none' ? 'block' : 'none';
+                document.getElementById('report_dropdown').style.display = newStyle;
+            }
+        </script>
         {%endcomment%}
     </section>
 </section>
