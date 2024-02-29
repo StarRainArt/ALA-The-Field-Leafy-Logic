@@ -6,3 +6,7 @@ def home(request):
 
 def reports(request):
     return render(request, "reports.html")
+
+
+def dashboard(request):
+    return render(request, "dashboard.html")
