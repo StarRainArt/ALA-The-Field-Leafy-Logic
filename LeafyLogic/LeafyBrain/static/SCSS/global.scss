@@ -135,6 +135,33 @@ main{
 }
 
 #dash_main{
-    
-    
+    width: 90%;
+
+    #top_dash {
+        display: flex;
+        justify-content: space-around;
+        margin: 5vh 0;
+
+        section {
+            background-color: $panel-bg;
+            width: 15vw;
+            height: 30vh;
+        }
+    }
+    #bottom_dash {
+        display: flex;
+        justify-content: space-around;
+
+        #graph_sect {
+            background-color: $panel-bg;
+            width: 51vw;
+            height: 30vh;
+        }
+
+        #device_sect {
+            background-color: $panel-bg;
+            width: 15vw;
+            height: 30vh;
+        }
+    }
 }
