@@ -109,3 +109,27 @@ main{
         }
     }
 }
+
+
+#home_main {
+    width: 90%;
+
+    h1 {
+        text-align: center;
+        font-size: 48px;
+    }
+    
+    #home_buttons{
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+    
+        section{
+            background-color: $panel-bg;
+            height: 45vh;
+            width: 20vw;
+            border-radius: 10px;
+            box-shadow: 0px 5px 10px -5px black;
+        }
+    }
+}
