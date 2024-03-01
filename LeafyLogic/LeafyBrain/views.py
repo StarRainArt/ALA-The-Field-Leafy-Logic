@@ -12,12 +12,12 @@ def reports(request):
 def dashboard(request):
     return render(request, "dashboard.html")
 
-def data(request):
-    datapoint = DataPoint.objects.all()
-    devicedata = DeviceData.objects.all()
-    print(datapoint)
-    return render(
-        request,
-        "dbdata.html",
-        {"datapoints": datapoint, "devices": devicedata}
-    )
+# def data(request):
+#     datapoint = DataPoint.objects.all()
+#     devicedata = DeviceData.objects.all()
+#     print(datapoint)
+#     return render(
+#         request,
+#         "dbdata.html",
+#         {"datapoints": datapoint, "devices": devicedata}
+#     )
