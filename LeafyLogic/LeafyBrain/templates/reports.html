@@ -25,6 +25,16 @@
             }
         </script>
         {%endcomment%}
+        {% for datapoint in datapoints %}
+            <a class={{ datapoint.human_name }}>
+                {{ datapoint.human_name }} - {{ datapoint.gate_way_receive_time }}<br><br>
+            </a>
+        {% endfor %}
+        {% for device in devices  %}
+            <a class={{device.name}}>
+                {{device.name}} - {{device.last_seen}}<br><br>
+            </a>
+        {% endfor %}
     </section>
 </section>
 {% endblock %}
