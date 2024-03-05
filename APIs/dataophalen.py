@@ -7,7 +7,7 @@ import mariadb
 try:
     conn = mariadb.connect(
         user="root",
-        password="edwin",
+        password="root",
         host="localhost",
         database="sensor_data" 
     )
