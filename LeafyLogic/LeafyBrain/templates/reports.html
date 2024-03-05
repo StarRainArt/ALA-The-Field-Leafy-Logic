@@ -7,28 +7,9 @@
         <h3>Search-bar</h3>
     </section>
     <section class="report_section">
-        {%comment%}
-        {% for report in reports %}
-        <div class="report">
-            <p>{{}}</p>
-            <button onclick="toggleDisplay()">icon</button>
-            <div class="report_dropdown">
-                edheduihedie
-            </div>
-        </div>
-        {%endfor%}
-        <script>
-            function toggleDisplay() {
-                var currentStyle = document.getElementById('report_dropdown').style.display;
-                var newStyle = currentStyle === 'none' ? 'block' : 'none';
-                document.getElementById('report_dropdown').style.display = newStyle;
-            }
-        </script>
-        {%endcomment%}
-        
         {% for device in devices  %}
-            <a class={{device.name}}>
-                {{device.name}} - {{datapoint.gate_way_receive_time}}<br><br>
+            <a class="{{device_name}} device_name">
+                {{device.name}} - {{datapoint.gate_way_receive_time}}
             </a>
         {% endfor %}
     </section>

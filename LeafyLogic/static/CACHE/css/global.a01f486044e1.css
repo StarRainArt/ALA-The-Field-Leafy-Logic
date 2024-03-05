@@ -1,0 +1,142 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+/* line 2, LeafyBrain/static/SCSS/global.scss */
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box; }
+
+/* line 10, LeafyBrain/static/SCSS/global.scss */
+* {
+  box-sizing: inherit; }
+
+/* line 36, LeafyBrain/static/SCSS/global.scss */
+body {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  background-color: #ECE3D3; }
+
+/* line 43, LeafyBrain/static/SCSS/global.scss */
+header {
+  display: flex;
+  flex-direction: column;
+  background-color: #9F9E89;
+  align-items: center;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px; }
+  /* line 51, LeafyBrain/static/SCSS/global.scss */
+  header img {
+    width: 15vw;
+    margin: 40px 0; }
+  /* line 56, LeafyBrain/static/SCSS/global.scss */
+  header nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%; }
+    /* line 62, LeafyBrain/static/SCSS/global.scss */
+    header nav a {
+      background-color: #B8BCA2;
+      width: 80%;
+      margin: 2vh 0;
+      padding: 1.7vh 0;
+      border-radius: 10px;
+      box-shadow: 0px 5px 10px -5px black;
+      text-align: center;
+      text-decoration: none;
+      color: black;
+      font-family: "Noto Sans", sans-serif;
+      font-size: 24px;
+      font-weight: bold; }
+      /* line 76, LeafyBrain/static/SCSS/global.scss */
+      header nav a:hover {
+        background-color: #C5CAAD; }
+
+/* line 83, LeafyBrain/static/SCSS/global.scss */
+main {
+  display: flex;
+  align-items: center;
+  flex-direction: column; }
+  /* line 88, LeafyBrain/static/SCSS/global.scss */
+  main p {
+    width: 95%;
+    margin-left: 5%; }
+  /* line 93, LeafyBrain/static/SCSS/global.scss */
+  main .main {
+    width: 90%; }
+    /* line 96, LeafyBrain/static/SCSS/global.scss */
+    main .main #rep_header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center; }
+    /* line 103, LeafyBrain/static/SCSS/global.scss */
+    main .main .report_section {
+      display: flex;
+      flex-direction: column;
+      background-color: #BFA886;
+      height: 400px;
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0px 5px 10px -5px black; }
+      /* line 112, LeafyBrain/static/SCSS/global.scss */
+      main .main .report_section .device_name {
+        border-style: solid; }
+
+/* line 123, LeafyBrain/static/SCSS/global.scss */
+#home_main {
+  width: 90%; }
+  /* line 126, LeafyBrain/static/SCSS/global.scss */
+  #home_main h1 {
+    text-align: center;
+    font-size: 48px; }
+  /* line 131, LeafyBrain/static/SCSS/global.scss */
+  #home_main #home_buttons {
+    display: flex;
+    justify-content: space-around;
+    width: 100%; }
+    /* line 136, LeafyBrain/static/SCSS/global.scss */
+    #home_main #home_buttons section {
+      background-color: #BFA886;
+      height: 45vh;
+      width: 20vw;
+      border-radius: 10px;
+      box-shadow: 0px 5px 10px -5px black; }
+
+/* line 146, LeafyBrain/static/SCSS/global.scss */
+#dash_main {
+  width: 90%; }
+  /* line 149, LeafyBrain/static/SCSS/global.scss */
+  #dash_main h1 {
+    text-align: center;
+    font-size: 48px; }
+  /* line 154, LeafyBrain/static/SCSS/global.scss */
+  #dash_main #top_dash {
+    display: flex;
+    justify-content: space-around;
+    margin: 5vh 0; }
+    /* line 159, LeafyBrain/static/SCSS/global.scss */
+    #dash_main #top_dash section {
+      background-color: #BFA886;
+      width: 15vw;
+      height: 30vh;
+      border-radius: 10px;
+      box-shadow: 0px 5px 10px -5px black; }
+  /* line 167, LeafyBrain/static/SCSS/global.scss */
+  #dash_main #bottom_dash {
+    display: flex;
+    justify-content: space-around; }
+    /* line 171, LeafyBrain/static/SCSS/global.scss */
+    #dash_main #bottom_dash section {
+      background-color: #BFA886;
+      border-radius: 10px;
+      box-shadow: 0px 5px 10px -5px black;
+      height: 30vh; }
+    /* line 178, LeafyBrain/static/SCSS/global.scss */
+    #dash_main #bottom_dash #graph_sect {
+      width: 51vw; }
+    /* line 182, LeafyBrain/static/SCSS/global.scss */
+    #dash_main #bottom_dash #device_sect {
+      width: 15vw; }

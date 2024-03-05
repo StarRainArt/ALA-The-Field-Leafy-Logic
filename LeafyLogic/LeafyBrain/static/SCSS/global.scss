@@ -101,16 +101,31 @@ main{
         }
 
         .report_section{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
             background-color: $panel-bg;
-            height: 400px;
+            height: 70vh;
             width: 100%;
             border-radius: 10px;
             box-shadow: 0px 5px 10px -5px black;
+
+                .device_name{
+                    width: 95%;
+                    text-align: center;
+                    background-color: $panel-sec;
+                    border-radius: 5px;
+                    box-shadow: 0px 5px 10px -5px black;
+                    border-width: 2px;
+                    font-family: $para-font;
+                    font-size: 14px;
+                    margin: 1vh 0;
+                }
         }
 
-        .reports{
-            color: null;
-        }
+
+        
     }
 }
 
