@@ -9,7 +9,7 @@
     <section class="report_section">
         {% for device in devices  %}
             <a class="{{device_name}} device_name">
-                {{device.name}} - {{datapoint.gate_way_receive_time}}
+                {{device.name}} - {{device.last_seen}}
             </a>
         {% endfor %}
     </section>
