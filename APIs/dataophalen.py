@@ -3,6 +3,7 @@ import schedule
 import time
 from time import sleep
 import mariadb
+import datetime
 
 try:
     conn = mariadb.connect(
@@ -59,15 +60,15 @@ class DeviceData:
         self.headers = {'Authorization': f'token {self.token}',
                         'accept': 'application/json'
                         }
-
+ 
     def communicate(self):
         url = f"{self.base_url}{api}"
         res = requests.get(url, headers=self.headers)
         json = res.json()
-
+ 
         for devices in json['results']:
             time.sleep(0.5)
-
+ 
             device_id = devices['id']
             serialnumber = devices['serial_number']
             name = devices['name']
@@ -75,8 +76,11 @@ class DeviceData:
             last_seen = devices['last_seen']
             last_battery_voltage = devices['last_battery_voltage']
             human_name = api
-
-            cur.execute("INSERT INTO devicedata (device_id, serialnumber, name, label, last_seen, last_battery_voltage, human_name) VALUES (?, ?, ?, ?, ?, ?, ?)", (device_id, serialnumber, name, label, last_seen, last_battery_voltage, human_name))
+ 
+            last_seen_datetime = datetime.datetime.fromtimestamp(last_seen)
+ 
+            cur.execute("INSERT INTO devicedata (device_id, serialnumber, name, label, last_seen, last_battery_voltage, human_name) VALUES (?, ?, ?, ?, ?, ?, ?)",
+                (device_id, serialnumber, name, label, last_seen_datetime.strftime('%Y-%m-%d %H:%M:%S'), last_battery_voltage, human_name))
             conn.commit()
 
 if __name__ == "__main__":

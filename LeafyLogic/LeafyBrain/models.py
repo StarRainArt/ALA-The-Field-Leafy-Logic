@@ -8,7 +8,7 @@ class DeviceData(models.Model):
     serialNumber = models.CharField(max_length=255)
     name = models.CharField(max_length=255)
     label = models.CharField(max_length=255)
-    last_seen = models.IntegerField()
+    last_seen = models.DateTimeField()
     last_battery_voltage = models.FloatField()
     human_name = models.CharField(max_length=255)
 
