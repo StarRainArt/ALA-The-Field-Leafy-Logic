@@ -153,16 +153,78 @@ main{
             border-radius: 10px;
             box-shadow: 0px 5px 10px -5px black;
         }
-            .device1{
+           .device1{
                 display: flex;
                 flex-direction: column;
-                justify-content: center;
+                justify-content: space-around;
+
+                    h2{
+                        align-self: center;
+                        font-family: $title-font;
+                    }
+
+                    h3{
+                        align-self: center;
+                        font-family: $para-font;
+                    }
+
+                    a{
+                        align-self: center;
+                        background-color: $panel-bg;
+                        width: 80%;
+                        margin: 2vh 0;
+                        padding: 1.7vh 0;
+                        border-radius: 10px;
+                        box-shadow: 0px 5px 10px -5px black;
+                        text-align: center;
+                        text-decoration: none;
+                        color: black;
+                        font-family: $para-font;
+                        font-size: 14px;
+
+                        &:hover{
+                            background-color: $panel-sec;
+                        }
+                    }
+
+            
+                    
+
             }
 
             .device2{
                 display: flex;
                 flex-direction: column;
-                justify-content: center;
+                justify-content: space-around;
+
+                h2{
+                    align-self: center;
+                    font-family: $title-font;
+                }
+
+                h3{
+                    align-self: center;
+                    font-family: $para-font;
+                }
+
+                a{
+                    align-self: center;
+                    background-color: $panel-bg;
+                    width: 80%;
+                    margin: 2vh 0;
+                    padding: 1.7vh 0;
+                    border-radius: 10px;
+                    box-shadow: 0px 5px 10px -5px black;
+                    text-align: center;
+                    text-decoration: none;
+                    color: black;
+                    font-family: $para-font;
+                    font-size: 14px;
+
+                    &:hover{
+                        background-color: $panel-sec;
+                    }
+                }
             }
     }
 }

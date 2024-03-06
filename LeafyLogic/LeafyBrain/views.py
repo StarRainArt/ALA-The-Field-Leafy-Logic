@@ -2,8 +2,20 @@ from django.shortcuts import render
 from .models import DeviceData, DataPoint
 
 # Create your views here.
+
 def home(request):
-    return render(request, "home.html")
+    devicedata = DeviceData.objects.all()
+    names = []  # Create an empty list to store human names
+    label = []
+    for device in devicedata:
+        names.append(device.name)
+    for labels in devicedata:
+        label.append(labels.label)
+    return render(
+        request, 
+        "home.html",
+        {"names": names, "labels": label}              
+    )
 
 def reports(request):
     return render(request, "reports.html")

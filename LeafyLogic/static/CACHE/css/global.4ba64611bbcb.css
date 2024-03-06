@@ -1,0 +1,214 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+/* line 2, LeafyBrain/static/SCSS/global.scss */
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box; }
+
+/* line 10, LeafyBrain/static/SCSS/global.scss */
+* {
+  box-sizing: inherit; }
+
+/* line 36, LeafyBrain/static/SCSS/global.scss */
+body {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  background-color: #ECE3D3; }
+
+/* line 43, LeafyBrain/static/SCSS/global.scss */
+header {
+  display: flex;
+  flex-direction: column;
+  background-color: #9F9E89;
+  align-items: center;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px; }
+  /* line 51, LeafyBrain/static/SCSS/global.scss */
+  header img {
+    width: 15vw;
+    margin: 40px 0; }
+  /* line 56, LeafyBrain/static/SCSS/global.scss */
+  header nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%; }
+    /* line 62, LeafyBrain/static/SCSS/global.scss */
+    header nav a {
+      background-color: #B8BCA2;
+      width: 80%;
+      margin: 2vh 0;
+      padding: 1.7vh 0;
+      border-radius: 10px;
+      box-shadow: 0px 5px 10px -5px black;
+      text-align: center;
+      text-decoration: none;
+      color: black;
+      font-family: "Noto Sans", sans-serif;
+      font-size: 24px;
+      font-weight: bold; }
+      /* line 76, LeafyBrain/static/SCSS/global.scss */
+      header nav a:hover {
+        background-color: #C5CAAD; }
+
+/* line 83, LeafyBrain/static/SCSS/global.scss */
+main {
+  display: flex;
+  align-items: center;
+  flex-direction: column; }
+  /* line 88, LeafyBrain/static/SCSS/global.scss */
+  main p {
+    width: 95%;
+    margin-left: 5%; }
+  /* line 93, LeafyBrain/static/SCSS/global.scss */
+  main .main {
+    width: 90%; }
+    /* line 96, LeafyBrain/static/SCSS/global.scss */
+    main .main #rep_header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      font-family: "Roboto Slab", serif;
+      font-size: 14px; }
+    /* line 105, LeafyBrain/static/SCSS/global.scss */
+    main .main .report_section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      background-color: #BFA886;
+      height: 70vh;
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0px 5px 10px -5px black; }
+      /* line 116, LeafyBrain/static/SCSS/global.scss */
+      main .main .report_section .device_name {
+        width: 95%;
+        text-align: center;
+        background-color: #DDC8A0;
+        border-radius: 5px;
+        box-shadow: 0px 5px 10px -5px black;
+        border-width: 2px;
+        font-family: "Noto Sans", sans-serif;
+        font-size: 14px;
+        margin: 1vh 0; }
+
+/* line 135, LeafyBrain/static/SCSS/global.scss */
+#home_main {
+  width: 90%; }
+  /* line 138, LeafyBrain/static/SCSS/global.scss */
+  #home_main h1 {
+    text-align: center;
+    font-size: 44px;
+    font-family: "Roboto Slab", serif; }
+  /* line 144, LeafyBrain/static/SCSS/global.scss */
+  #home_main #home_buttons {
+    display: flex;
+    justify-content: space-around;
+    width: 100%; }
+    /* line 149, LeafyBrain/static/SCSS/global.scss */
+    #home_main #home_buttons section {
+      background-color: #BFA886;
+      height: 45vh;
+      width: 20vw;
+      border-radius: 10px;
+      box-shadow: 0px 5px 10px -5px black; }
+    /* line 156, LeafyBrain/static/SCSS/global.scss */
+    #home_main #home_buttons .device1 {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around; }
+      /* line 161, LeafyBrain/static/SCSS/global.scss */
+      #home_main #home_buttons .device1 h2 {
+        align-self: center; }
+      /* line 165, LeafyBrain/static/SCSS/global.scss */
+      #home_main #home_buttons .device1 h3 {
+        align-self: center;
+        font-family: "Noto Sans", sans-serif; }
+      /* line 170, LeafyBrain/static/SCSS/global.scss */
+      #home_main #home_buttons .device1 a {
+        align-self: center;
+        background-color: #BFA886;
+        width: 80%;
+        margin: 2vh 0;
+        padding: 1.7vh 0;
+        border-radius: 10px;
+        box-shadow: 0px 5px 10px -5px black;
+        text-align: center;
+        text-decoration: none;
+        color: black;
+        font-family: "Noto Sans", sans-serif;
+        font-size: 14px; }
+        /* line 184, LeafyBrain/static/SCSS/global.scss */
+        #home_main #home_buttons .device1 a:hover {
+          background-color: #DDC8A0; }
+      /* line 189, LeafyBrain/static/SCSS/global.scss */
+      #home_main #home_buttons .device1 .device2 {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around; }
+        /* line 194, LeafyBrain/static/SCSS/global.scss */
+        #home_main #home_buttons .device1 .device2 h2 {
+          align-self: center; }
+        /* line 198, LeafyBrain/static/SCSS/global.scss */
+        #home_main #home_buttons .device1 .device2 h3 {
+          align-self: center;
+          font-family: "Noto Sans", sans-serif; }
+        /* line 203, LeafyBrain/static/SCSS/global.scss */
+        #home_main #home_buttons .device1 .device2 a {
+          align-self: center;
+          background-color: #BFA886;
+          width: 80%;
+          margin: 2vh 0;
+          padding: 1.7vh 0;
+          border-radius: 10px;
+          box-shadow: 0px 5px 10px -5px black;
+          text-align: center;
+          text-decoration: none;
+          color: black;
+          font-family: "Noto Sans", sans-serif;
+          font-size: 14px; }
+          /* line 217, LeafyBrain/static/SCSS/global.scss */
+          #home_main #home_buttons .device1 .device2 a:hover {
+            background-color: #DDC8A0; }
+
+/* line 227, LeafyBrain/static/SCSS/global.scss */
+#dash_main {
+  width: 90%; }
+  /* line 230, LeafyBrain/static/SCSS/global.scss */
+  #dash_main h1 {
+    text-align: center;
+    font-size: 40px;
+    font-family: "Roboto Slab", serif; }
+  /* line 236, LeafyBrain/static/SCSS/global.scss */
+  #dash_main #top_dash {
+    display: flex;
+    justify-content: space-around;
+    margin: 5vh 0; }
+    /* line 241, LeafyBrain/static/SCSS/global.scss */
+    #dash_main #top_dash section {
+      background-color: #BFA886;
+      width: 15vw;
+      height: 30vh;
+      border-radius: 10px;
+      box-shadow: 0px 5px 10px -5px black; }
+  /* line 249, LeafyBrain/static/SCSS/global.scss */
+  #dash_main #bottom_dash {
+    display: flex;
+    justify-content: space-around; }
+    /* line 253, LeafyBrain/static/SCSS/global.scss */
+    #dash_main #bottom_dash section {
+      background-color: #BFA886;
+      border-radius: 10px;
+      box-shadow: 0px 5px 10px -5px black;
+      height: 30vh; }
+    /* line 260, LeafyBrain/static/SCSS/global.scss */
+    #dash_main #bottom_dash #graph_sect {
+      width: 51vw; }
+    /* line 264, LeafyBrain/static/SCSS/global.scss */
+    #dash_main #bottom_dash #device_sect {
+      width: 15vw; }
