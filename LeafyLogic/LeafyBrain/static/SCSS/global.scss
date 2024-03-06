@@ -98,6 +98,8 @@ main{
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
+            font-family: $title-font;
+            font-size: 14px;
         }
 
         .report_section{
@@ -135,7 +137,8 @@ main{
 
     h1 {
         text-align: center;
-        font-size: 48px;
+        font-size: 44px;
+        font-family: $title-font;
     }
     
     #home_buttons{
@@ -150,6 +153,18 @@ main{
             border-radius: 10px;
             box-shadow: 0px 5px 10px -5px black;
         }
+            .device1{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+            }
+
+            .device2{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
     }
 }
 
@@ -158,7 +173,8 @@ main{
 
     h1 {
         text-align: center;
-        font-size: 48px;
+        font-size: 40px;
+        font-family: $title-font;
     }
 
     #top_dash {
