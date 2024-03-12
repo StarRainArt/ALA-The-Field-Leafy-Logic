@@ -32,6 +32,18 @@ $title-font: "Roboto Slab", serif;
 $para-font: "Noto Sans", sans-serif;
 
 
+section::-webkit-scrollbar{
+    background-color: $panel-bg;
+    border-radius: 10px;
+    width: 10px;
+    box-shadow: 0px 5px 10px -5px black;
+}
+
+section::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+    background-color: black;
+}
+
 //body styling
 
 body {
