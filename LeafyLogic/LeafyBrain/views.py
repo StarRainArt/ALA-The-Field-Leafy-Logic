@@ -5,7 +5,7 @@ from .models import DeviceData, DataPoint
 
 def home(request):
     devicedata = DeviceData.objects.all()
-    names = []  # Create an empty list to store human names
+    names = [] 
     label = []
     for device in devicedata:
         names.append(device.name)
@@ -22,7 +22,16 @@ def reports(request):
 
 
 def dashboard(request):
-    return render(request, "dashboard.html")
+    devicedata = DataPoint.objects.all()
+    human_names = [] 
+    for device in devicedata:
+        human_names.append(device.human_name)
+    return render(
+        request, 
+        "dashboard.html",
+        {"human_name": human_names}              
+    )
+
 
 def data(request):
     datapoint = DataPoint.objects.all()
