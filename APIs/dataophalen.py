@@ -8,7 +8,7 @@ import datetime
 try:
     conn = mariadb.connect(
         user="root",
-        password="root",
+        password="edwin",
         host="localhost",
         database="sensor_data" 
     )
