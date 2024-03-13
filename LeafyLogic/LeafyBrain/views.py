@@ -50,8 +50,6 @@ def dashboard(request, device_id):
         context
     )
 
-    
-
 def data(request):
     datapoint = DataPoint.objects.all()
     devicedata = DeviceData.objects.all()
