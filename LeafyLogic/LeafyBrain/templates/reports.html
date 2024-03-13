@@ -6,9 +6,9 @@
         <h1>Reports</h1>
     </section>
     <section class="report_section">
-        {% for device in devices  %}
+        {% for report in reports %}
             <a class="{{device_name}} device_name">
-                {{device.name}} - {{device.last_seen}}
+                {{report.name}} - {{report.last_seen}}
             </a>
         {% endfor %}
     </section>

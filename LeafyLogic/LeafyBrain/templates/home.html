@@ -6,16 +6,13 @@
     <h1>Devices</h1>
  
     <section id="home_buttons">
-        <section class="device1">
-            <h2>{{names.0}}</h2>
-            <h3>{{labels.0}}</h3>
-            <a href="{% url 'dashboard' %}">Dashboard</a>
-        </section>
-        <section class="device2">
-            <h2>{{names.2}}</h2>
-            <h3>{{labels.0}}</h3> 
-            <a href="{% url 'dashboard' %}">Dashboard</a>  
-        </section>
+        {% for name in device_names %}
+            <section class="device1">
+                <h2>{{name.name}}</h2>
+                <h3>The Field</h3>
+                <a href="{% url 'dashboard' %}">Dashboard</a>
+            </section>
+        {% endfor %}
     </section>
 </section>
 {% endblock %}

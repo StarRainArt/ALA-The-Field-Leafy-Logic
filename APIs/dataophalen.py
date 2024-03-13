@@ -78,16 +78,22 @@ class DeviceData:
             human_name = api
  
             last_seen_datetime = datetime.datetime.fromtimestamp(last_seen)
- 
-            cur.execute("INSERT INTO devicedata (device_id, serialnumber, name, label, last_seen, last_battery_voltage, human_name) VALUES (?, ?, ?, ?, ?, ?, ?)",
-                (device_id, serialnumber, name, label, last_seen_datetime.strftime('%Y-%m-%d %H:%M:%S'), last_battery_voltage, human_name))
-            conn.commit()
+
+            cur.execute("SELECT * FROM devicedata WHERE device_id=? AND last_seen=? AND last_battery_voltage=?", (device_id, last_seen_datetime.strftime('%Y-%m-%d %H:%M:%S'), last_battery_voltage))
+            existing_data = cur.fetchone()
+
+            if existing_data is None:
+                cur.execute("INSERT INTO devicedata (device_id, serialnumber, name, label, last_seen, last_battery_voltage, human_name) VALUES (?, ?, ?, ?, ?, ?, ?)",
+                    (device_id, serialnumber, name, label, last_seen_datetime.strftime('%Y-%m-%d %H:%M:%S'), last_battery_voltage, human_name))
+                conn.commit()
 
 if __name__ == "__main__":
     datapoint = Datapoint()
     devicedata = DeviceData()
     schedule.every(5).minutes.do(datapoint.retrieve)
     schedule.every(5).minutes.do(devicedata.communicate)
+    # schedule.every(30).seconds.do(datapoint.retrieve)
+    # schedule.every(30).seconds.do(devicedata.communicate)
     while True:
         schedule.run_pending()
         sleep(1)
