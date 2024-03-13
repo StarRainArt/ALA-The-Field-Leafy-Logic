@@ -5,25 +5,16 @@
 <section id="dash_main">
     <h1>Dashboard</h1>
     <section id="top_dash">
-        <section>
-            {{human_name.1}}
-        </section>
-        <section>
-            
-        </section>
-        <section>
-            
-        </section>
-        <section>
-            
-        </section>
+        {% for name, value in latest_values.items %}
+            <section class="" >
+                <h3>{{ name }}</h3>
+                <p>{{ value }}</p>
+            </section>
+        {% endfor %}
     </section>
     <section id="bottom_dash">
         <section id="graph_sect">
         
-        </section>
-        <section id="device_sect">
-            
         </section>
     </section>
     
