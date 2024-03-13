@@ -16,6 +16,7 @@
 
 
 -- Databasestructuur van sensor_data wordt geschreven
+DROP DATABASE IF EXISTS `sensor_data`;
 CREATE DATABASE IF NOT EXISTS `sensor_data` /*!40100 DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci */;
 USE `sensor_data`;
 
