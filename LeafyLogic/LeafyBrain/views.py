@@ -3,19 +3,13 @@ from .models import DeviceData, DataPoint
 
 # Create your views here.
 
+
 def home(request):
-    # devicedata = DeviceData.objects.all()
-    # names = [] 
-    # label = []
-    # for device in devicedata:
-    #     names.append(device.name)
-    # for labels in devicedata:
-    #     label.append(labels.label)
-    unique_name = DeviceData.objects.values('name').distinct()
+    unique_devices = DeviceData.objects.values('name', 'device_id').distinct()
     return render(
         request, 
         "home.html",
-        {"device_names": unique_name}              
+        {"unique_devices": unique_devices}              
     )
 
 
