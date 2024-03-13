@@ -4,21 +4,19 @@ from .models import DeviceData, DataPoint
 # Create your views here.
 
 def home(request):
-    devicedata = DeviceData.objects.all()
-    names = [] 
-    label = []
-    for device in devicedata:
-        names.append(device.name)
-    for labels in devicedata:
-        label.append(labels.label)
+    # devicedata = DeviceData.objects.all()
+    # names = [] 
+    # label = []
+    # for device in devicedata:
+    #     names.append(device.name)
+    # for labels in devicedata:
+    #     label.append(labels.label)
+    unique_name = DeviceData.objects.values('name').distinct()
     return render(
         request, 
         "home.html",
-        {"names": names, "labels": label}              
+        {"device_names": unique_name}              
     )
-
-def reports(request):
-    return render(request, "reports.html")
 
 
 def dashboard(request):
@@ -36,9 +34,16 @@ def dashboard(request):
 def data(request):
     datapoint = DataPoint.objects.all()
     devicedata = DeviceData.objects.all()
-    print(datapoint)
+    sorted_reports = DeviceData.objects.order_by('-last_seen')
+    # print(datapoint)
     return render(
         request, 
         "reports.html", 
-        {"datapoints": datapoint, "devices": devicedata}
+        {"datapoints": datapoint, "devices": devicedata, "reports": sorted_reports}
     )
+
+  # Fetch reports from the database sorted by arrival time
+    sorted_reports = Report.objects.order_by('arrival_time')
+
+    # Pass sorted reports to the template
+    return render(request, 'report_list.html', {'reports': sorted_reports})
