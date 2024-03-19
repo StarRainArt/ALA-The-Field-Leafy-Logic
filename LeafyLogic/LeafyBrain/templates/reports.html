@@ -7,9 +7,11 @@
     </section>
     <section class="report_section">
         {% for report in reports %}
-            <a class="{{device_name}} device_name">
+            <details>
+            <summary class="{{device_name}} device_name">
                 {{report.name}} - {{report.last_seen}}
-            </a>
+            </summary>
+            </details>
         {% endfor %}
     </section>
 </section>
