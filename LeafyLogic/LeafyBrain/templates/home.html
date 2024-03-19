@@ -7,10 +7,12 @@
  
     <section id="home_buttons">
         {% for device in unique_devices %}
-            <section class="device1">
+            <section class="device">
                 <h2>{{device.name}}</h2>
-                <h3>The Field</h3>
-                <a href="{% url 'dashboard' device_id=device.device_id %}">Dashboard</a>
+                <section class="pannelsec">
+                    <h3>The Field</h3>
+                    <a href="{% url 'dashboard' device_id=device.device_id %}">Dashboard</a>
+                </section>
             </section>
         {% endfor %}
     </section>
