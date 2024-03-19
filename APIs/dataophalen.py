@@ -10,9 +10,9 @@ try:
         user="root",
         password="root",
         host="localhost",
-        database="sensor_data" 
+        database="sensor_data"
     )
-    
+
 except mariadb.Error as e:
     print(f"Error: {e}")
 
@@ -25,8 +25,10 @@ list = [
     'relative_humidity_events',
     'soil_electric_conductivity_events',
     'soil_relative_permittivity_events',
-    'soil_temperature_events'
+    'soil_temperature_events',
+    'temperature_events'
 ]
+
 
 class Datapoint:
     def __init__(self):
@@ -40,9 +42,14 @@ class Datapoint:
         for uri in list:
             url = f"{self.base_url}{uri}"
             res = requests.get(url, headers=self.headers)
-            json = res.json()
+            print(res.text)  # Debugging: print the response content
+            try:
+                json = res.json()
+            except requests.exceptions.JSONDecodeError as e:
+                print(f"Error decoding JSON: {e}")
+                continue  # Skip to the next URI if JSON decoding fails
             
-            for x in json['results']:
+            for x in json.get('results', []):  # Use .get() to safely access 'results'
                 time.sleep(0.5)
 
                 timestamp = x['timestamp']
@@ -50,8 +57,10 @@ class Datapoint:
                 value = x['value']
                 human_name = uri
 
-            cur.execute("INSERT INTO datapoint (timestamp, device, value, human_name) VALUES (?, ?, ?, ?)", (timestamp, device, value, human_name))
-            conn.commit()
+                cur.execute("INSERT INTO datapoint (timestamp, device, value, human_name) VALUES (?, ?, ?, ?)",
+                            (timestamp, device, value, human_name))
+                conn.commit()
+
 
 class DeviceData:
     def __init__(self):
@@ -60,15 +69,20 @@ class DeviceData:
         self.headers = {'Authorization': f'token {self.token}',
                         'accept': 'application/json'
                         }
- 
+
     def communicate(self):
         url = f"{self.base_url}{api}"
         res = requests.get(url, headers=self.headers)
-        json = res.json()
- 
-        for devices in json['results']:
+        print(res.text)  # Debugging: print the response content
+        try:
+            json = res.json()
+        except requests.exceptions.JSONDecodeError as e:
+            print(f"Error decoding JSON: {e}")
+            return  # Exit the method if JSON decoding fails
+
+        for devices in json.get('results', []):  # Use .get() to safely access 'results'
             time.sleep(0.5)
- 
+
             device_id = devices['id']
             serialnumber = devices['serial_number']
             name = devices['name']
@@ -76,24 +90,26 @@ class DeviceData:
             last_seen = devices['last_seen']
             last_battery_voltage = devices['last_battery_voltage']
             human_name = api
- 
+
             last_seen_datetime = datetime.datetime.fromtimestamp(last_seen)
 
-            cur.execute("SELECT * FROM devicedata WHERE device_id=? AND last_seen=? AND last_battery_voltage=?", (device_id, last_seen_datetime.strftime('%Y-%m-%d %H:%M:%S'), last_battery_voltage))
+            cur.execute("SELECT * FROM devicedata WHERE device_id=? AND last_seen=? AND last_battery_voltage=?",
+                        (device_id, last_seen_datetime.strftime('%Y-%m-%d %H:%M:%S'), last_battery_voltage))
             existing_data = cur.fetchone()
 
             if existing_data is None:
                 cur.execute("INSERT INTO devicedata (device_id, serialnumber, name, label, last_seen, last_battery_voltage, human_name) VALUES (?, ?, ?, ?, ?, ?, ?)",
-                    (device_id, serialnumber, name, label, last_seen_datetime.strftime('%Y-%m-%d %H:%M:%S'), last_battery_voltage, human_name))
+                            (device_id, serialnumber, name, label, last_seen_datetime.strftime('%Y-%m-%d %H:%M:%S'), last_battery_voltage, human_name))
                 conn.commit()
+
 
 if __name__ == "__main__":
     datapoint = Datapoint()
     devicedata = DeviceData()
-    schedule.every(5).minutes.do(datapoint.retrieve)
-    schedule.every(5).minutes.do(devicedata.communicate)
-    # schedule.every(30).seconds.do(datapoint.retrieve)
-    # schedule.every(30).seconds.do(devicedata.communicate)
+    # schedule.every(5).minutes.do(datapoint.retrieve)
+    # schedule.every(5).minutes.do(devicedata.communicate)
+    schedule.every(30).seconds.do(datapoint.retrieve)
+    schedule.every(30).seconds.do(devicedata.communicate)
     while True:
         schedule.run_pending()
         sleep(1)
