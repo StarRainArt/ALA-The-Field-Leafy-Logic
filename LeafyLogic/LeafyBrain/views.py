@@ -32,7 +32,8 @@ def dashboard(request, device_id):
         'soil_relative_permittivity_events': 'Water Content in %',
         'soil_temperature_events': 'Soil Temp. in °C',
         'par_events': 'Light Level in μmol/(m²s)',
-        'relative_humidity_events': 'Humidity in %'
+        'relative_humidity_events': 'Humidity in %',
+        'temperature_events': 'Temp. in °C'
     }
 
     unit_mapping = {
