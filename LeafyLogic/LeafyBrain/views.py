@@ -35,6 +35,15 @@ def dashboard(request, device_id):
         'relative_humidity_events': 'Humidity in %'
     }
 
+    unit_mapping = {
+        'battery_voltage_events': '%',
+        'soil_electric_conductivity_events': 'dS/m',
+        'soil_relative_permittivity_events': '%',
+        'soil_temperature_events': '°C',
+        'par_events': 'μmol/(m²s)',
+        'relative_humidity_events': '%'
+    }
+
     for name in unique_human_names:
         latest_data_point = DataPoint.objects.filter(human_name=name).latest('timeStamp')
         latest_values[name_mapping.get(name, name)] = latest_data_point.value
