@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import DeviceData, DataPoint
-
+from django.http import JsonResponse
+from django.core import serializers
 # Create your views here.
 
 def home(request):
@@ -18,11 +19,13 @@ def home(request):
         {"unique_devices": unique_devices}              
     )
 
-
 def dashboard(request, device_id):
     device_data = DeviceData.objects.filter(device_id=device_id)
     filtered_datapoint = DataPoint.objects.filter(device=device_id)
     unique_human_names = filtered_datapoint.values_list('human_name', flat=True).distinct()
+
+    deviceJson = DeviceData.objects.filter(device_id=device_id)
+    device_json_data = serializers.serialize('json', deviceJson)
 
     latest_data_points = []
 
@@ -51,7 +54,8 @@ def dashboard(request, device_id):
     context = {
         'device_data': device_data,
         "filtered_datapoint": filtered_datapoint,
-        "latest_values": latest_data_points 
+        "latest_values": latest_data_points,
+        'deviceJson': device_json_data
     }
 
     return render(request, "dashboard.html", context)
