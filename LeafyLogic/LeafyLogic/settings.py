@@ -80,7 +80,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'sensor_data',
         'USER': 'root',
-        'PASSWORD': 'WOlfie01',
+        'PASSWORD': 'Wolfie01',
         'HOST': '127.0.0.1',
         'PORT': '3306',
         'OPTIONS': {

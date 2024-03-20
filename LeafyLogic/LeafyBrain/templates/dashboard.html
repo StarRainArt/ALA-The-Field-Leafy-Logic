@@ -5,16 +5,16 @@
 <section id="dash_main">
     <h1>Dashboard</h1>
     <section id="top_dash">
-        {% for name, value in latest_values.items %}
+        {% for data_point in latest_values %}
             <section class="data-panel">
-                <h3 class="h3-dash">{{ name }}</h3>
-                <p class="p-sect-dash">{{ value }}</p>
+                <h3 class="h3-dash">{{ data_point.name }}</h3>
+                <p class="p-sect-dash">{{ data_point.value }} {{ data_point.unit }}</p>
             </section>
         {% endfor %}
     </section>
     <section id="bottom_dash">
         <section id="graph_sect">
-        
+            <canvas id="graph-canvas"></canvas>
         </section>
     </section>
     

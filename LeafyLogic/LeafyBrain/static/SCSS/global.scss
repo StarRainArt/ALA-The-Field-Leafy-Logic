@@ -274,6 +274,15 @@ main{
 
         #graph_sect {
             width: 51vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #graph-canvas {
+            width: 70%;
+            height: 90%;
+            background-color: #5C5243;
         }
 
         #device_sect {
