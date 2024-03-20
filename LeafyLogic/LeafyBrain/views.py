@@ -2,16 +2,8 @@ from django.shortcuts import render
 from .models import DeviceData, DataPoint
 from django.http import JsonResponse
 from django.core import serializers
-# Create your views here.
 
 def home(request):
-    # devicedata = DeviceData.objects.all()
-    # names = [] 
-    # label = []
-    # for device in devicedata:
-    #     names.append(device.name)
-    # for labels in devicedata:
-    #     label.append(labels.label)
     unique_devices = DeviceData.objects.values('name', 'device_id').distinct()
     return render(
         request, 
@@ -79,9 +71,3 @@ def data(request):
         "reports.html", 
         {"datapoints": datapoint, "devices": devicedata, "reports": sorted_reports}
     )
-
-  # Fetch reports from the database sorted by arrival time
-    sorted_reports = Report.objects.order_by('arrival_time')
-
-    # Pass sorted reports to the template
-    return render(request, 'report_list.html', {'reports': sorted_reports})

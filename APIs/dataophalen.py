@@ -8,7 +8,7 @@ import datetime
 try:
     conn = mariadb.connect(
         user="root",
-        password="Wolfie01",
+        password="edwin",
         host="localhost",
         database="sensor_data"
     )
@@ -107,8 +107,8 @@ if __name__ == "__main__":
     devicedata = DeviceData()
     # schedule.every(5).minutes.do(datapoint.retrieve)
     # schedule.every(5).minutes.do(devicedata.communicate)
-    schedule.every(30).seconds.do(datapoint.retrieve)
-    schedule.every(30).seconds.do(devicedata.communicate)
+    # schedule.every(30).seconds.do(datapoint.retrieve)
+    schedule.every(10).seconds.do(devicedata.communicate)
     while True:
         schedule.run_pending()
         sleep(1)

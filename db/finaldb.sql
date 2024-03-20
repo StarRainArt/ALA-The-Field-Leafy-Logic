@@ -16,7 +16,7 @@
 
 
 -- Databasestructuur van sensor_data wordt geschreven
-DROP DATABASE IF EXISTS `sensor_data`;
+DROP DATABASE if EXISTS `sensor_data`;
 CREATE DATABASE IF NOT EXISTS `sensor_data` /*!40100 DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci */;
 USE `sensor_data`;
 
@@ -148,83 +148,8 @@ CREATE TABLE IF NOT EXISTS `datapoint` (
   `value` decimal(10,0) DEFAULT NULL,
   `human_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `unique_datapoint_data` (`timestamp`,`gate_way_receive_time`,`device`,`value`,`human_name`)
+  UNIQUE KEY `unique_datapoint_data` (`gate_way_receive_time`)
 ) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
--- Dumpen data van tabel sensor_data.datapoint: ~42 rows (ongeveer)
-INSERT INTO `datapoint` (`id`, `timestamp`, `gate_way_receive_time`, `device`, `value`, `human_name`) VALUES
-	(7, 1709706116, '2024-03-06 10:48:30', 322, 4, 'battery_voltage_events'),
-	(13, 1709706116, '2024-03-06 10:48:42', 322, 4, 'battery_voltage_events'),
-	(19, 1709706116, '2024-03-06 10:50:38', 322, 4, 'battery_voltage_events'),
-	(25, 1709706116, '2024-03-06 10:54:52', 322, 4, 'battery_voltage_events'),
-	(10, 1709718094, '2024-03-06 10:48:33', 322, 0, 'soil_electric_conductivity_events'),
-	(11, 1709718094, '2024-03-06 10:48:34', 322, 1, 'soil_relative_permittivity_events'),
-	(12, 1709718094, '2024-03-06 10:48:35', 322, 25, 'soil_temperature_events'),
-	(16, 1709718094, '2024-03-06 10:48:46', 322, 0, 'soil_electric_conductivity_events'),
-	(17, 1709718094, '2024-03-06 10:48:47', 322, 1, 'soil_relative_permittivity_events'),
-	(18, 1709718094, '2024-03-06 10:48:48', 322, 25, 'soil_temperature_events'),
-	(22, 1709718094, '2024-03-06 10:50:42', 322, 0, 'soil_electric_conductivity_events'),
-	(23, 1709718094, '2024-03-06 10:50:43', 322, 1, 'soil_relative_permittivity_events'),
-	(24, 1709718094, '2024-03-06 10:50:44', 322, 25, 'soil_temperature_events'),
-	(28, 1709718094, '2024-03-06 10:54:56', 322, 0, 'soil_electric_conductivity_events'),
-	(29, 1709718094, '2024-03-06 10:54:57', 322, 1, 'soil_relative_permittivity_events'),
-	(30, 1709718094, '2024-03-06 10:54:58', 322, 25, 'soil_temperature_events'),
-	(8, 1709718361, '2024-03-06 10:48:31', 256, 0, 'par_events'),
-	(9, 1709718361, '2024-03-06 10:48:32', 256, 42, 'relative_humidity_events'),
-	(14, 1709718361, '2024-03-06 10:48:44', 256, 0, 'par_events'),
-	(15, 1709718361, '2024-03-06 10:48:45', 256, 42, 'relative_humidity_events'),
-	(20, 1709718361, '2024-03-06 10:50:40', 256, 0, 'par_events'),
-	(21, 1709718361, '2024-03-06 10:50:41', 256, 42, 'relative_humidity_events'),
-	(26, 1709718361, '2024-03-06 10:54:54', 256, 0, 'par_events'),
-	(27, 1709718361, '2024-03-06 10:54:55', 256, 42, 'relative_humidity_events'),
-	(34, 1710324458, '2024-03-13 11:23:04', 322, 0, 'soil_electric_conductivity_events'),
-	(35, 1710324458, '2024-03-13 11:23:05', 322, 1, 'soil_relative_permittivity_events'),
-	(36, 1710324458, '2024-03-13 11:23:06', 322, 14, 'soil_temperature_events'),
-	(40, 1710324458, '2024-03-13 11:25:13', 322, 0, 'soil_electric_conductivity_events'),
-	(41, 1710324458, '2024-03-13 11:25:14', 322, 1, 'soil_relative_permittivity_events'),
-	(42, 1710324458, '2024-03-13 11:25:15', 322, 14, 'soil_temperature_events'),
-	(46, 1710324458, '2024-03-13 11:27:50', 322, 0, 'soil_electric_conductivity_events'),
-	(47, 1710324458, '2024-03-13 11:27:51', 322, 1, 'soil_relative_permittivity_events'),
-	(48, 1710324458, '2024-03-13 11:27:52', 322, 14, 'soil_temperature_events'),
-	(52, 1710324458, '2024-03-13 11:28:04', 322, 0, 'soil_electric_conductivity_events'),
-	(53, 1710324458, '2024-03-13 11:28:05', 322, 1, 'soil_relative_permittivity_events'),
-	(54, 1710324458, '2024-03-13 11:28:06', 322, 14, 'soil_temperature_events'),
-	(58, 1710324458, '2024-03-13 11:30:13', 322, 0, 'soil_electric_conductivity_events'),
-	(59, 1710324458, '2024-03-13 11:30:14', 322, 1, 'soil_relative_permittivity_events'),
-	(60, 1710324458, '2024-03-13 11:30:15', 322, 14, 'soil_temperature_events'),
-	(64, 1710324458, '2024-03-13 11:30:52', 322, 0, 'soil_electric_conductivity_events'),
-	(65, 1710324458, '2024-03-13 11:30:53', 322, 1, 'soil_relative_permittivity_events'),
-	(66, 1710324458, '2024-03-13 11:30:54', 322, 14, 'soil_temperature_events'),
-	(70, 1710324458, '2024-03-13 11:31:31', 322, 0, 'soil_electric_conductivity_events'),
-	(71, 1710324458, '2024-03-13 11:31:32', 322, 1, 'soil_relative_permittivity_events'),
-	(72, 1710324458, '2024-03-13 11:31:33', 322, 14, 'soil_temperature_events'),
-	(76, 1710324458, '2024-03-13 11:32:09', 322, 0, 'soil_electric_conductivity_events'),
-	(77, 1710324458, '2024-03-13 11:32:10', 322, 1, 'soil_relative_permittivity_events'),
-	(78, 1710324458, '2024-03-13 11:32:11', 322, 14, 'soil_temperature_events'),
-	(31, 1710324477, '2024-03-13 11:23:00', 322, 4, 'battery_voltage_events'),
-	(37, 1710324477, '2024-03-13 11:25:09', 322, 4, 'battery_voltage_events'),
-	(43, 1710324477, '2024-03-13 11:27:46', 322, 4, 'battery_voltage_events'),
-	(49, 1710324477, '2024-03-13 11:28:00', 322, 4, 'battery_voltage_events'),
-	(55, 1710324477, '2024-03-13 11:30:09', 322, 4, 'battery_voltage_events'),
-	(61, 1710324477, '2024-03-13 11:30:48', 322, 4, 'battery_voltage_events'),
-	(67, 1710324477, '2024-03-13 11:31:26', 322, 4, 'battery_voltage_events'),
-	(73, 1710324477, '2024-03-13 11:32:05', 322, 4, 'battery_voltage_events'),
-	(32, 1710325132, '2024-03-13 11:23:01', 256, 0, 'par_events'),
-	(33, 1710325132, '2024-03-13 11:23:03', 256, 65, 'relative_humidity_events'),
-	(38, 1710325431, '2024-03-13 11:25:10', 256, 0, 'par_events'),
-	(39, 1710325431, '2024-03-13 11:25:12', 256, 65, 'relative_humidity_events'),
-	(44, 1710325431, '2024-03-13 11:27:48', 256, 0, 'par_events'),
-	(45, 1710325431, '2024-03-13 11:27:49', 256, 65, 'relative_humidity_events'),
-	(50, 1710325431, '2024-03-13 11:28:01', 256, 0, 'par_events'),
-	(51, 1710325431, '2024-03-13 11:28:03', 256, 65, 'relative_humidity_events'),
-	(56, 1710325431, '2024-03-13 11:30:11', 256, 0, 'par_events'),
-	(57, 1710325431, '2024-03-13 11:30:12', 256, 65, 'relative_humidity_events'),
-	(62, 1710325431, '2024-03-13 11:30:49', 256, 0, 'par_events'),
-	(63, 1710325431, '2024-03-13 11:30:51', 256, 65, 'relative_humidity_events'),
-	(68, 1710325431, '2024-03-13 11:31:28', 256, 0, 'par_events'),
-	(69, 1710325431, '2024-03-13 11:31:29', 256, 65, 'relative_humidity_events'),
-	(74, 1710325431, '2024-03-13 11:32:06', 256, 0, 'par_events'),
-	(75, 1710325431, '2024-03-13 11:32:08', 256, 65, 'relative_humidity_events');
 
 -- Structuur van  tabel sensor_data.devicedata wordt geschreven
 CREATE TABLE IF NOT EXISTS `devicedata` (
@@ -237,15 +162,8 @@ CREATE TABLE IF NOT EXISTS `devicedata` (
   `last_battery_voltage` float DEFAULT NULL,
   `human_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `unique_devicedata_data` (`device_id`,`last_seen`,`last_battery_voltage`)
+  UNIQUE KEY `unique_devicedata_data` (`last_seen`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
--- Dumpen data van tabel sensor_data.devicedata: ~4 rows (ongeveer)
-INSERT INTO `devicedata` (`id`, `device_id`, `serialnumber`, `name`, `label`, `last_seen`, `last_battery_voltage`, `human_name`) VALUES
-	(3, 256, '0033889B1BAB1169', 'firefly2_0051', 'The Field', '2024-03-03 09:44:32', 4.08059, 'devices'),
-	(4, 322, '006FE1FC316ED7D8', 'firefly2_0111', 'The Field', '2024-03-03 09:41:47', 4.09402, 'devices'),
-	(8, 256, '0033889B1BAB1169', 'firefly2_0051', 'The Field', '2024-03-12 08:27:47', 4.07082, 'devices'),
-	(9, 322, '006FE1FC316ED7D8', 'firefly2_0111', 'The Field', '2024-03-12 08:25:32', 4.09035, 'devices');
 
 -- Structuur van  tabel sensor_data.django_admin_log wordt geschreven
 CREATE TABLE IF NOT EXISTS `django_admin_log` (
