@@ -24,41 +24,38 @@ def dashboard(request, device_id):
     filtered_datapoint = DataPoint.objects.filter(device=device_id)
     unique_human_names = filtered_datapoint.values_list('human_name', flat=True).distinct()
 
-    latest_values = {}
+    latest_data_points = []
 
     name_mapping = {
-        'battery_voltage_events': 'Battery Voltage in %',
-        'soil_electric_conductivity_events': 'Soil Conductivity in dS/m',
-        'soil_relative_permittivity_events': 'Water Content in %',
-        'soil_temperature_events': 'Soil Temp. in °C',
-        'par_events': 'Light Level in μmol/(m²s)',
-        'relative_humidity_events': 'Humidity in %',
-        'temperature_events': 'Temp. in °C'
-    }
-
-    unit_mapping = {
-        'battery_voltage_events': '%',
-        'soil_electric_conductivity_events': 'dS/m',
-        'soil_relative_permittivity_events': '%',
-        'soil_temperature_events': '°C',
-        'par_events': 'μmol/(m²s)',
-        'relative_humidity_events': '%'
+        'battery_voltage_events': ('Battery Voltage', '%'),
+        'soil_electric_conductivity_events': ('Soil Conductivity', 'dS/m'),
+        'soil_relative_permittivity_events': ('Water Content', '%'),
+        'soil_temperature_events': ('Soil Temp.', '°C'),
+        'par_events': ('Light Level', 'μmol/(m²s)'),
+        'relative_humidity_events': ('Humidity', '%'),
+        'temperature_events': ('Temperature' , '°C')
     }
 
     for name in unique_human_names:
         latest_data_point = DataPoint.objects.filter(human_name=name).latest('timeStamp')
-        latest_values[name_mapping.get(name, name)] = latest_data_point.value
+        if name in name_mapping:
+            readable_name, unit = name_mapping[name]
+        else:
+            readable_name, unit = name, '' 
+
+        latest_data_points.append({
+            'name': readable_name,
+            'value': latest_data_point.value,
+            'unit': unit
+        })
 
     context = {
-    'device_data': device_data,
-    "filtered_datapoint": filtered_datapoint,
-    "latest_values": latest_values
+        'device_data': device_data,
+        "filtered_datapoint": filtered_datapoint,
+        "latest_values": latest_data_points 
     }
-    return render(
-        request, 
-        "dashboard.html",
-        context
-    )
+
+    return render(request, "dashboard.html", context)
 
     
 
