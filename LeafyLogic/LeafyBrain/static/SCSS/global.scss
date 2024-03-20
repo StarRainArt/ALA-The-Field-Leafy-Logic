@@ -105,12 +105,18 @@ main{
     align-items: center;
     flex-direction: column;
 
-    p {
+    #Latest {
         width: 95%;
         margin-left: 5%;
     }
 
-    .main{
+    h1 {
+        font-size: 44px;
+        font-family: $title-font;
+        margin: 25px 0;
+    }
+
+    .report_main{
         width: 90%;
 
         #rep_header {
@@ -134,31 +140,55 @@ main{
             box-shadow: $shadow;
             overflow: scroll;
             overflow-x: hidden;
-            }
-                .device_name{
-                    width: 100%;
-                    text-align: center;
-                    background-color: $panel-sec;
-                    border-radius: 5px;
-                    box-shadow: $shadow;
-                    border-width: 2px;
-                    font-family: $para-font;
-                    font-size: 14px;
-                    margin: 1vh 0;
-                }
         }
 
+        details {
+            width: 100%;
+            box-shadow: $shadow;
+            background-color: $panel-sec;
+            border-radius: 5px;
+            font-size: 14px;
+            font-family: $para-font;
+            color: $main-fontcolor;
+            padding: 15px 10px;
 
-        
-    }
+            &[open] > summary {
+                border-radius: 5px 5px 0 0;
+
+                &::after {
+                    transform: rotate(-180deg);
+                }
+            }
+
+            summary {
+                list-style: none;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-weight: bold;
+
+                &::-webkit-details-marker {
+                    display: none;
+                }
+
+                &::after {
+                    content: '';
+                    width: 0; 
+                    height: 0; 
+                    border-top: 10px solid $main-fontcolor;
+                    border-inline: 7px solid transparent;
+                    transition: 0.2s;
+                }
+            }
+        }      
+    } 
+}
 
 #home_main {
     width: 90%;
 
     h1 {
         text-align: center;
-        font-size: 44px;
-        font-family: $title-font;
     }
     
     #home_buttons{

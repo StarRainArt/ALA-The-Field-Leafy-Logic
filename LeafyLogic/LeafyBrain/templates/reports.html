@@ -1,16 +1,17 @@
 {% extends "base.html" %} {% block title %} Leafy Logic - Reports {% endblock %}
 {% block content %}
-<p>Latest Reading at xx/xx/xxxx - xx:xx:xx</p>
-<section class="main">
+<p id="Latest">Latest Reading at xx/xx/xxxx - xx:xx:xx</p>
+<section class="report_main">
     <section id="rep_header">
         <h1>Reports</h1>
     </section>
     <section class="report_section">
         {% for report in reports %}
-            <details>
+            <details class="device_details">
             <summary class="{{device_name}} device_name">
                 {{report.name}} - {{report.last_seen}}
             </summary>
+            <p>Test<br>TestToo</p>
             </details>
         {% endfor %}
     </section>
