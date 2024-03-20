@@ -42,7 +42,6 @@ class Datapoint:
         for uri in list:
             url = f"{self.base_url}{uri}"
             res = requests.get(url, headers=self.headers)
-            print(res.text)  # Debugging: print the response content
             try:
                 json = res.json()
             except requests.exceptions.JSONDecodeError as e:

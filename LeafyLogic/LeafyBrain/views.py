@@ -27,6 +27,10 @@ def dashboard(request, device_id):
     deviceJson = DeviceData.objects.filter(device_id=device_id)
     device_json_data = serializers.serialize('json', deviceJson)
 
+    dataJson = DataPoint.objects.filter(device=device_id)
+    datapoint_json = serializers.serialize('json', dataJson)
+
+
     latest_data_points = []
 
     name_mapping = {
@@ -55,7 +59,9 @@ def dashboard(request, device_id):
         'device_data': device_data,
         "filtered_datapoint": filtered_datapoint,
         "latest_values": latest_data_points,
-        'deviceJson': device_json_data
+        'deviceJson': device_json_data,
+        "dataPointJson": datapoint_json
+        
     }
 
     return render(request, "dashboard.html", context)
