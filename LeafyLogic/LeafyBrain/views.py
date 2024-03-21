@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from .models import DeviceData, DataPoint
-from django.http import JsonResponse
-from django.core import serializers
+import json
 # Create your views here.
 
 def home(request):
@@ -23,15 +22,10 @@ def dashboard(request, device_id):
     device_data = DeviceData.objects.filter(device_id=device_id)
     filtered_datapoint = DataPoint.objects.filter(device=device_id)
     unique_human_names = filtered_datapoint.values_list('human_name', flat=True).distinct()
-
-    deviceJson = DeviceData.objects.filter(device_id=device_id)
-    device_json_data = serializers.serialize('json', deviceJson)
-
-    dataJson = DataPoint.objects.filter(device=device_id)
-    datapoint_json = serializers.serialize('json', dataJson)
-
+    allDeviceData = DataPoint.objects.values('device').distinct()
 
     latest_data_points = []
+    jsonArray = []
 
     name_mapping = {
         'battery_voltage_events': ('Battery Voltage', '%'),
@@ -55,13 +49,27 @@ def dashboard(request, device_id):
             'unit': unit
         })
 
+    for data in allDeviceData:
+        device_data = DataPoint.objects.filter(device=data['device'])
+
+        for name in device_data:
+            latestValue = DataPoint.objects.filter(human_name=name.human_name).latest('timeStamp')
+
+            value_str = str(latestValue.value)
+
+            jsonArray.append({
+                'name': latestValue.human_name,
+                'value': value_str,
+                'device': latestValue.device
+            })
+
+    validJson = json.dumps(jsonArray)
+
     context = {
         'device_data': device_data,
         "filtered_datapoint": filtered_datapoint,
         "latest_values": latest_data_points,
-        'deviceJson': device_json_data,
-        "dataPointJson": datapoint_json
-        
+        "json": validJson    
     }
 
     return render(request, "dashboard.html", context)

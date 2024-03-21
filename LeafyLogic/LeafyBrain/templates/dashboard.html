@@ -1,14 +1,12 @@
 {% extends "base.html" %} {% block title %} Leafy Logic - Dashboard {% endblock %}
 {% block content %}
 <p>Latest Reading at xx/xx/xxxx - xx:xx:xx</p>
+
 <script>
-    var deviceJsonData = JSON.parse('{{ deviceJson|safe }}');
-    console.log(deviceJsonData);
-    var dataJson = JSON.parse('{{ dataPointJson|safe }}');
-    console.log(dataJson);
-    // Now you can use deviceJsonData in your JavaScript code
-    // For example, use it to populate charts or tables
+    const deviceJsonData = JSON.parse('{{ json|safe }}');
+    console.log(deviceJsonData)
 </script>
+
 <section id="dash_main">
     <h1>Dashboard</h1>
     <section id="top_dash">
@@ -23,7 +21,6 @@
         <section id="graph_sect">
             <canvas id="graph-canvas"></canvas>
         </section>
-    </section>
-    
+    </section>  
 </section>
 {% endblock %}
