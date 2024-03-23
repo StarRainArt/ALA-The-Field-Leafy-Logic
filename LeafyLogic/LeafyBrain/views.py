@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import DeviceData, DataPoint
+from django.core.serializers.json import DjangoJSONEncoder
 import json
 # Create your views here.
 
@@ -22,10 +23,9 @@ def dashboard(request, device_id):
     device_data = DeviceData.objects.filter(device_id=device_id)
     filtered_datapoint = DataPoint.objects.filter(device=device_id)
     unique_human_names = filtered_datapoint.values_list('human_name', flat=True).distinct()
-    allDeviceData = DataPoint.objects.values('device').distinct()
+    distinctData = DataPoint.objects.values_list('device', flat=True).distinct()
 
     latest_data_points = []
-    jsonArray = []
 
     name_mapping = {
         'battery_voltage_events': ('Battery Voltage', '%'),
@@ -49,21 +49,27 @@ def dashboard(request, device_id):
             'unit': unit
         })
 
-    for data in allDeviceData:
-        device_data = DataPoint.objects.filter(device=data['device'])
+    deviceGroups = {}
+    for device in distinctData:
+        data_points = DataPoint.objects.filter(device=device)
+        unique_names = set()
+        list = []
 
-        for name in device_data:
-            latestValue = DataPoint.objects.filter(human_name=name.human_name).latest('timeStamp')
+        for data in data_points:
+            human_name = data.human_name
 
-            value_str = str(latestValue.value)
+            if human_name not in unique_names:
+                dataApi = DataPoint.objects.filter(human_name=data.human_name, device=device).latest('timeStamp')
+                unique_names.add(human_name)
 
-            jsonArray.append({
-                'name': latestValue.human_name,
-                'value': value_str,
-                'device': latestValue.device
-            })
+                list.append({
+                    "name": dataApi.human_name,
+                    "value": float(dataApi.value)
+                })
 
-    validJson = json.dumps(jsonArray)
+        deviceGroups[device] = list
+
+    validJson = json.dumps(deviceGroups)
 
     context = {
         'device_data': device_data,
