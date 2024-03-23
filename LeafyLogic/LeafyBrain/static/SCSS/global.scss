@@ -275,6 +275,7 @@ main{
         #graph_sect {
             width: 51vw;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
         }

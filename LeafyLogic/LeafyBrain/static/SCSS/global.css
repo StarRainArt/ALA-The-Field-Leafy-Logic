@@ -40,7 +40,11 @@ header {
 }
 header img {
   width: 15vw;
-  margin: 40px 0;
+  margin-top: 40px;
+}
+header h1 {
+  color: #fcfde2;
+  font-family: "Roboto Slab", serif;
 }
 header nav {
   display: flex;
@@ -89,7 +93,7 @@ main .main #rep_header {
 main .main .report_section {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  padding: 10px;
   gap: 10px;
   background-color: #BFA886;
   height: 70vh;
@@ -100,7 +104,7 @@ main .main .report_section {
   overflow-x: hidden;
 }
 main .main .device_name {
-  width: 95%;
+  width: 100%;
   text-align: center;
   background-color: #DDC8A0;
   border-radius: 5px;
@@ -124,57 +128,34 @@ main .main .device_name {
   justify-content: space-around;
   width: 100%;
 }
-#home_main #home_buttons section {
+#home_main #home_buttons .device {
   background-color: #BFA886;
-  height: 45vh;
+  height: 35vh;
   width: 20vw;
   border-radius: 10px;
   box-shadow: 0px 5px 10px -5px black;
-}
-#home_main #home_buttons .device1 {
+  padding: 0 15px 15px 15px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
-#home_main #home_buttons .device1 h2 {
+#home_main #home_buttons .device h2 {
   align-self: center;
   font-family: "Roboto Slab", serif;
 }
-#home_main #home_buttons .device1 h3 {
-  align-self: center;
-  font-family: "Noto Sans", sans-serif;
-}
-#home_main #home_buttons .device1 a {
-  align-self: center;
-  background-color: #BFA886;
-  width: 80%;
-  margin: 2vh 0;
-  padding: 1.7vh 0;
-  border-radius: 10px;
-  box-shadow: 0px 5px 10px -5px black;
-  text-align: center;
-  text-decoration: none;
-  color: black;
-  font-family: "Noto Sans", sans-serif;
-  font-size: 14px;
-}
-#home_main #home_buttons .device1 a:hover {
+#home_main #home_buttons .device .pannelsec {
   background-color: #DDC8A0;
-}
-#home_main #home_buttons .device2 {
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  border-radius: 10px;
 }
-#home_main #home_buttons .device2 h2 {
-  align-self: center;
-  font-family: "Roboto Slab", serif;
-}
-#home_main #home_buttons .device2 h3 {
+#home_main #home_buttons .device .pannelsec h3 {
   align-self: center;
   font-family: "Noto Sans", sans-serif;
 }
-#home_main #home_buttons .device2 a {
+#home_main #home_buttons .device .pannelsec a {
   align-self: center;
   background-color: #BFA886;
   width: 80%;
@@ -188,7 +169,7 @@ main .main .device_name {
   font-family: "Noto Sans", sans-serif;
   font-size: 14px;
 }
-#home_main #home_buttons .device2 a:hover {
+#home_main #home_buttons .device .pannelsec a:hover {
   background-color: #DDC8A0;
 }
 
@@ -206,11 +187,28 @@ main .main .device_name {
   margin: 5vh 0;
 }
 #dash_main #top_dash section {
+  display: flex;
   background-color: #BFA886;
   width: 15vw;
   height: 30vh;
   border-radius: 10px;
   box-shadow: 0px 5px 10px -5px black;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+#dash_main #top_dash section .h3-dash {
+  height: 5%;
+  text-align: center;
+  font-family: "Roboto Slab", serif;
+}
+#dash_main #top_dash section .p-sect-dash {
+  width: 80%;
+  border-radius: 10px;
+  background-color: #DDC8A0;
+  text-align: center;
+  align-self: center;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 24px;
 }
 #dash_main #bottom_dash {
   display: flex;
@@ -224,6 +222,15 @@ main .main .device_name {
 }
 #dash_main #bottom_dash #graph_sect {
   width: 51vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#dash_main #bottom_dash #graph-canvas {
+  width: 70%;
+  height: 90%;
+  background-color: #5C5243;
 }
 #dash_main #bottom_dash #device_sect {
   width: 15vw;
