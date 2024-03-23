@@ -50,6 +50,8 @@ def dashboard(request, device_id):
         })
 
     deviceGroups = {}
+    counter = 1
+    
     for device in distinctData:
         data_points = DataPoint.objects.filter(device=device)
         unique_names = set()
@@ -67,7 +69,8 @@ def dashboard(request, device_id):
                     "value": float(dataApi.value)
                 })
 
-        deviceGroups[device] = list
+        deviceGroups[counter] = list
+        counter = counter + 1
 
     validJson = json.dumps(deviceGroups)
 

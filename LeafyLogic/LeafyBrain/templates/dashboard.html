@@ -4,7 +4,12 @@
 
 <script>
     const deviceJsonData = JSON.parse('{{ json|safe }}');
-    console.log(deviceJsonData)
+
+    function graph(api) {
+        const x = deviceJsonData['1']
+        const y = deviceJsonData['2']
+
+    }
 </script>
 
 <section id="dash_main">
