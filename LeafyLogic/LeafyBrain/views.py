@@ -60,13 +60,15 @@ def dashboard(request, device_id):
         for data in data_points:
             human_name = data.human_name
 
-            if human_name not in unique_names:
+            if human_name not in unique_names and human_name in name_mapping:
                 dataApi = DataPoint.objects.filter(human_name=data.human_name, device=device).latest('timeStamp')
+                readable_name = name_mapping[dataApi.human_name][0]
                 unique_names.add(human_name)
 
                 list.append({
                     "name": dataApi.human_name,
-                    "value": float(dataApi.value)
+                    "value": float(dataApi.value),
+                    "readableName": readable_name
                 })
 
         deviceGroups[counter] = list
