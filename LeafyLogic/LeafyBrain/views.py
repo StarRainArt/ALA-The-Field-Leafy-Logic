@@ -92,9 +92,3 @@ def data(request):
         "reports.html", 
         {"datapoints": datapoint, "devices": devicedata, "reports": sorted_reports}
     )
-
-  # Fetch reports from the database sorted by arrival time
-    sorted_reports = Report.objects.order_by('arrival_time')
-
-    # Pass sorted reports to the template
-    return render(request, 'report_list.html', {'reports': sorted_reports})
