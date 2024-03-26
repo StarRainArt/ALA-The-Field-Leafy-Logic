@@ -27,7 +27,8 @@ def dashboard(request, device_id):
         'soil_relative_permittivity_events': ('Water Content', '%'),
         'soil_temperature_events': ('Soil Temp.', '°C'),
         'par_events': ('Light Level', 'μmol/(m²s)'),
-        'relative_humidity_events': ('Humidity', '%')
+        'relative_humidity_events': ('Humidity', '%'),
+        'temperature_events': ('Temperature', '°C')
     }
 
     for name in unique_human_names:
