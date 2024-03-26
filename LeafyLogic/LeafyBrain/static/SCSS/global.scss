@@ -310,6 +310,16 @@ main{
 
         #graph_sect {
             width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #graph-canvas{
+            width: 70%;
+            height: 90%;
+            background-color: grey;
         }
 
         #device_sect {
