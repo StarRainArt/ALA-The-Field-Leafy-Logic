@@ -2,6 +2,32 @@
 {% block content %}
 <p>Latest Reading at xx/xx/xxxx - xx:xx:xx</p>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const deviceJsonData = JSON.parse('{{ json|safe }}');
+        const canvas = document.getElementById("graph-canvas");
+        const title = document.getElementById("graph-title");
+        console.log(deviceJsonData);
+
+        function graph(api) {
+            const x = deviceJsonData['1'];
+            const y = deviceJsonData['2'];
+
+            const objectX = x.find(item => item.name === api);
+            const objectY = y.find(item => item.name === api);
+
+            let division = 100 / (objectX.value + objectY.value);
+
+            let percentageX = division * objectX.value;
+
+            canvas.style.background = `linear-gradient(to right, purple ${percentageX}%, blue`;
+            title.textContent = objectX.readableName
+        }
+
+        graph('relative_humidity_events');
+    });
+</script>
+
 <section id="dash_main">
     <h1>Dashboard</h1>
     <section id="top_dash">
@@ -14,9 +40,9 @@
     </section>
     <section id="bottom_dash">
         <section id="graph_sect">
-            <canvas id="graph-canvas"></canvas>
+            <h1 id="graph-title"></h1>
+            <section id="graph-canvas"></section>
         </section>
-    </section>
-    
+    </section>  
 </section>
 {% endblock %}
