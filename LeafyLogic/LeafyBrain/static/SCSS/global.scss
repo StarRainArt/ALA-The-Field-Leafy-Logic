@@ -250,9 +250,11 @@ main{
 }
 
 #dash_main{
-    display: flex;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
     justify-content: center;
-    flex-direction: column;
+    flex-direction: row;
+    gap: 10px;
     width: 90%;
     padding-bottom: 10px;
 
@@ -262,9 +264,15 @@ main{
         font-family: $title-font;
     }
 
+    .h3-dash{
+        height: 5%;
+        text-align: center;
+        font-family: $title-font;
+    }
+
     #top_dash {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         width: 100%;
         margin-bottom: 10px;
         gap: 10px;
@@ -277,12 +285,6 @@ main{
             box-shadow: $shadow;
             flex-wrap: wrap;
             justify-content: center;
-
-            .h3-dash{
-                height: 5%;
-                text-align: center;
-                font-family: $title-font;
-            }
 
             .p-sect-dash{
                 width: 80%;
@@ -305,7 +307,8 @@ main{
             background-color: $panel-bg;
             border-radius: 10px;
             box-shadow: $shadow;
-            height: 30vh;
+            padding-bottom: 20px;
+            // height: 30vh;
         }
 
         #graph_sect {
