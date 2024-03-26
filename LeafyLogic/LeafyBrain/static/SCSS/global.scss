@@ -108,6 +108,18 @@ main{
     #Latest {
         width: 95%;
         margin-left: 5%;
+        margin-top: 10px;
+
+        a{
+            background-color: $panel-bg;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            border-radius: 5px;
+            padding: 5px;
+            box-shadow: $shadow;
+        }
     }
 
     h1 {
