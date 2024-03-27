@@ -65,6 +65,7 @@ def dashboard(request, device_id):
             if human_name not in unique_names and human_name in name_mapping:
                 #Zorgt dat je alleen de meest recente values van elke device ophaalt
                 dataApi = DataPoint.objects.filter(human_name=data.human_name, device=device).latest('timeStamp')
+                deviceTitles = DeviceData.objects.filter(device_id=dataApi.device).values('name').latest('last_seen')
                 #geeft weer een betere benaming
                 readable_name = name_mapping[dataApi.human_name][0]
                 unique_names.add(human_name)
@@ -73,7 +74,8 @@ def dashboard(request, device_id):
                 list.append({
                     "name": dataApi.human_name,
                     "value": float(dataApi.value),
-                    "readableName": readable_name
+                    "readableName": readable_name,
+                    "device": deviceTitles['name']
                 })
 
         #Geeft de array een naam

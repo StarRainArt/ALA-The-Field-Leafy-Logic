@@ -12,6 +12,8 @@
         const deviceJsonData = JSON.parse('{{ json|safe }}');
         const canvas = document.getElementById("graph-canvas");
         const title = document.getElementById("graph-title");
+        const device1 = document.getElementById("device1");
+        const device2 = document.getElementById("device2");
         console.log(deviceJsonData);
 
         function graph(api) {
@@ -27,6 +29,8 @@
 
             canvas.style.background = `linear-gradient(to top, rgb(78, 60, 129) ${percentageX}%, rgb(103, 136, 180)`;
             title.textContent = objectX.readableName
+            device1.textContent = objectY.device
+            device2.textContent = objectX.device
         }
 
         graph('relative_humidity_events');
@@ -48,7 +52,10 @@
     <section id="bottom_dash">
         <section id="graph_sect">
             <h3 id="graph-title" class="h3-dash"></h3>
-            <section id="graph-canvas"></section>
+            <section id="graph-canvas">
+                <h4 id="device1"></h4>
+                <h4 id="device2"></h4>
+            </section>
         </section>
     </section>  
 </section>

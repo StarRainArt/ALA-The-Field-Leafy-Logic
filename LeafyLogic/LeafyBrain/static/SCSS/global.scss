@@ -331,10 +331,24 @@ main{
             align-items: center;
         }
 
+        #device1 {
+            color: white;
+            font-family: $title-font;
+        }
+
+        #device2 {
+            color: white;
+            font-family: $title-font;
+        }
+
         #graph-canvas{
             width: 70%;
             height: 90%;
             background-color: grey;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            align-items: center;
         }
 
         #device_sect {
