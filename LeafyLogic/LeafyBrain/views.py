@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from .models import DeviceData, DataPoint
-from django.core.serializers.json import DjangoJSONEncoder
 import json
 # Create your views here.
 
