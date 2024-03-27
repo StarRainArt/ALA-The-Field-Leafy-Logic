@@ -5,6 +5,7 @@ from time import sleep
 import mariadb
 import datetime
 
+#Database connectie
 try:
     conn = mariadb.connect(
         user="root",
@@ -18,6 +19,7 @@ except mariadb.Error as e:
 
 cur = conn.cursor()
 
+#Lijst van alle APIS
 api = 'devices'
 list = [
     'battery_voltage_events',
@@ -31,6 +33,7 @@ list = [
 
 
 class Datapoint:
+    #Zorgt voor toegang API
     def __init__(self):
         self.base_url = "https://garden.inajar.nl/api/"
         self.token = "a83d911c8b57054979190015e2a3f5d823d16f56"
@@ -38,18 +41,19 @@ class Datapoint:
                         'accept': 'application/json'
                         }
 
+    #Haal voor elke API de data op die erbij hoort
     def retrieve(self):
         for uri in list:
             url = f"{self.base_url}{uri}"
             res = requests.get(url, headers=self.headers)
-            print(res.text)  # Debugging: print the response content
+            print(res.text) 
             try:
                 json = res.json()
             except requests.exceptions.JSONDecodeError as e:
                 print(f"Error decoding JSON: {e}")
-                continue  # Skip to the next URI if JSON decoding fails
+                continue  
             
-            for x in json.get('results', []):  # Use .get() to safely access 'results'
+            for x in json.get('results', []):  
                 time.sleep(0.5)
 
                 timestamp = x['timestamp']
@@ -57,12 +61,14 @@ class Datapoint:
                 value = x['value']
                 human_name = uri
 
+                #Stuur de opgehaalde data naar de DB
                 cur.execute("INSERT INTO datapoint (timestamp, device, value, human_name) VALUES (?, ?, ?, ?)",
                             (timestamp, device, value, human_name))
                 conn.commit()
 
 
 class DeviceData:
+    #Zorgt voor toegang API
     def __init__(self):
         self.base_url = "https://garden.inajar.nl/api/"
         self.token = "a83d911c8b57054979190015e2a3f5d823d16f56"
@@ -70,17 +76,18 @@ class DeviceData:
                         'accept': 'application/json'
                         }
 
+    #Haal voor elke API de data op die erbij hoort
     def communicate(self):
         url = f"{self.base_url}{api}"
         res = requests.get(url, headers=self.headers)
-        print(res.text)  # Debugging: print the response content
+        print(res.text)  
         try:
             json = res.json()
         except requests.exceptions.JSONDecodeError as e:
             print(f"Error decoding JSON: {e}")
-            return  # Exit the method if JSON decoding fails
+            return 
 
-        for devices in json.get('results', []):  # Use .get() to safely access 'results'
+        for devices in json.get('results', []):  
             time.sleep(0.5)
 
             device_id = devices['id']
@@ -91,8 +98,10 @@ class DeviceData:
             last_battery_voltage = devices['last_battery_voltage']
             human_name = api
 
+            #Maakt normale tijd van de timestamp
             last_seen_datetime = datetime.datetime.fromtimestamp(last_seen)
 
+            #Stuur de opgehaalde data naar de DB
             cur.execute("SELECT * FROM devicedata WHERE device_id=? AND last_seen=? AND last_battery_voltage=?",
                         (device_id, last_seen_datetime.strftime('%Y-%m-%d %H:%M:%S'), last_battery_voltage))
             existing_data = cur.fetchone()
@@ -102,7 +111,7 @@ class DeviceData:
                             (device_id, serialnumber, name, label, last_seen_datetime.strftime('%Y-%m-%d %H:%M:%S'), last_battery_voltage, human_name))
                 conn.commit()
 
-
+#Roept alles aan en runt het om de 5 min
 if __name__ == "__main__":
     datapoint = Datapoint()
     devicedata = DeviceData()
