@@ -102,8 +102,8 @@ class DeviceData:
             last_seen_datetime = datetime.datetime.fromtimestamp(last_seen)
 
             #Stuur de opgehaalde data naar de DB
-            cur.execute("SELECT * FROM devicedata WHERE device_id=? AND last_seen=? AND last_battery_voltage=?",
-                        (device_id, last_seen_datetime.strftime('%Y-%m-%d %H:%M:%S'), last_battery_voltage))
+            cur.execute("SELECT * FROM devicedata WHERE last_seen=? AND last_battery_voltage=?",
+                        (last_seen_datetime.strftime('%Y-%m-%d %H:%M:%S'), last_battery_voltage))
             existing_data = cur.fetchone()
 
             if existing_data is None:
