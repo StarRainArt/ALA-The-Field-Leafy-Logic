@@ -148,7 +148,7 @@ CREATE TABLE IF NOT EXISTS `datapoint` (
   `value` decimal(10,0) DEFAULT NULL,
   `human_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `unique_datapoint_data` (`timestamp`,`gate_way_receive_time`,`device`,`value`,`human_name`)
+  UNIQUE KEY `unique_datapoint_data` (`timestamp`,`gate_way_receive_time`,`device`,`value`)
 ) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- Structuur van  tabel sensor_data.devicedata wordt geschreven
@@ -161,8 +161,7 @@ CREATE TABLE IF NOT EXISTS `devicedata` (
   `last_seen` datetime DEFAULT NULL,
   `last_battery_voltage` float DEFAULT NULL,
   `human_name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `unique_devicedata_data` (`device_id`,`last_seen`,`last_battery_voltage`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- Structuur van  tabel sensor_data.django_admin_log wordt geschreven
