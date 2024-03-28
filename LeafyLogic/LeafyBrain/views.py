@@ -2,6 +2,18 @@ from django.shortcuts import render
 from .models import DeviceData, DataPoint
 import json
 
+def base(request):
+    devicedata = DeviceData.objects.all()
+    sorted_devicedata = DeviceData.objects.latest('last_seen')
+    context = {
+        "time": str(sorted_devicedata)
+    }
+    return render(
+        request, 
+        "base.html",
+        context
+        )
+
 
 #Haalt alle devicedata op waar naam en id uniek zijn en stuurt het naar home.html
 def home(request):
