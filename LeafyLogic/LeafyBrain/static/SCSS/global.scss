@@ -109,6 +109,7 @@ main{
         width: 95%;
         margin-left: 5%;
         margin-top: 10px;
+        font-family: $para-font;
 
         a{
             background-color: $panel-bg;
@@ -152,47 +153,60 @@ main{
             box-shadow: $shadow;
             overflow: scroll;
             overflow-x: hidden;
+
+            p {
+                width: 100%;
+                box-shadow: $shadow;
+                background-color: $panel-sec;
+                border-radius: 5px;
+                font-size: 14px;
+                font-family: $para-font;
+                color: $main-fontcolor;
+                padding: 15px 10px;
+                margin: 0;
+
+            }
         }
 
-        details {
-            width: 100%;
-            box-shadow: $shadow;
-            background-color: $panel-sec;
-            border-radius: 5px;
-            font-size: 14px;
-            font-family: $para-font;
-            color: $main-fontcolor;
-            padding: 15px 10px;
+        // details {
+        //     width: 100%;
+        //     box-shadow: $shadow;
+        //     background-color: $panel-sec;
+        //     border-radius: 5px;
+        //     font-size: 14px;
+        //     font-family: $para-font;
+        //     color: $main-fontcolor;
+        //     padding: 15px 10px;
 
-            &[open] > summary {
-                border-radius: 5px 5px 0 0;
+        //     &[open] > summary {
+        //         border-radius: 5px 5px 0 0;
 
-                &::after {
-                    transform: rotate(-180deg);
-                }
-            }
+        //         &::after {
+        //             transform: rotate(-180deg);
+        //         }
+        //     }
 
-            summary {
-                list-style: none;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                font-weight: bold;
+        //     summary {
+        //         list-style: none;
+        //         display: flex;
+        //         justify-content: space-between;
+        //         align-items: center;
+        //         font-weight: bold;
 
-                &::-webkit-details-marker {
-                    display: none;
-                }
+        //         &::-webkit-details-marker {
+        //             display: none;
+        //         }
 
-                &::after {
-                    content: '';
-                    width: 0; 
-                    height: 0; 
-                    border-top: 10px solid $main-fontcolor;
-                    border-inline: 7px solid transparent;
-                    transition: 0.2s;
-                }
-            }
-        }      
+        //         &::after {
+        //             content: '';
+        //             width: 0; 
+        //             height: 0; 
+        //             border-top: 10px solid $main-fontcolor;
+        //             border-inline: 7px solid transparent;
+        //             transition: 0.2s;
+        //         }
+        //     }
+        // }      
     } 
 }
 
