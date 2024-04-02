@@ -29,6 +29,7 @@ def dashboard(request, device_id):
     #Haalt alle data op voor datapoint en devicedata, device_id word uit de URL gehaald om de juiste devicedata te krijgen
     device_data = DeviceData.objects.filter(device_id=device_id)
     filtered_datapoint = DataPoint.objects.filter(device=device_id)
+    latest_devicedata = DeviceData.objects.filter(device_id=device_id).latest('last_seen')
     
     #Haalt weer unieke waardes op voor beide tabellen
     unique_human_names = filtered_datapoint.values_list('human_name', flat=True).distinct()
@@ -101,7 +102,8 @@ def dashboard(request, device_id):
         'device_data': device_data,
         "filtered_datapoint": filtered_datapoint,
         "latest_values": latest_data_points,
-        "json": validJson    
+        "json": validJson, 
+        "last_seen": latest_devicedata   
     }
 
     #Stuurt data naar dashboard

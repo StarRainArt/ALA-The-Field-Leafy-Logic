@@ -1,7 +1,8 @@
 {% extends "base.html" %} {% block title %} Leafy Logic - Dashboard {% endblock %}
 {% block content %}
 {% load static %}
-
+<p id="Latest">Latest Reading at {{last_seen.last_seen}}
+</p>
 <section id="Latest">
     <a href="{% url 'home' %}"><img src="{% static 'Img/left-arrow.png' %}"></a>
 </section>
