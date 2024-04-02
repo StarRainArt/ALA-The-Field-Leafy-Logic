@@ -1,0 +1,19 @@
+{% extends "base.html" %} {% block title %} Leafy Logic - Home {% endblock %}
+{% block content %}
+
+<section id="home_main">
+    <h1>Devices</h1>
+ 
+    <section id="home_buttons">
+        {% for device in unique_devices %}
+            <section class="device">
+                <h2>{{device.name}}</h2>
+                <section class="pannelsec">
+                    <h3>The Field</h3>
+                    <a href="{% url 'dashboard' device_id=device.device_id %}">Dashboard</a>
+                </section>
+            </section>
+        {% endfor %}
+    </section>
+</section>
+{% endblock %}
